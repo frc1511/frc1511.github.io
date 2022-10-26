@@ -5,7 +5,7 @@ baseurl: /
 url: https://frc1511.github.io
 domain: frc1511.github.io
 
-theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
 # color_scheme: dark
 
 search_enabled: true
