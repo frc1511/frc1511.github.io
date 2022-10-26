@@ -10,7 +10,7 @@ nav_order: 2
 * [Miscellaneous](#miscellaneous)
 
 ## SVN
-In order to keep track of the changes we make to our code on the team, we use a version control software called SVN (short for "subversion"). SVN allows us to incrementally "commit", our code changes as we code so we know exactly when something is added, and so we can always go back to a previous version of the code easily. When working on the same code with other members of the team, SVN can help "merge" people's code together and help maintain a centralized version of the code.
+On team 1511, we use a version control software called SVN (short for "Subversion") to keep track of changes to our code. SVN allows us to incrementally "commit" our code changes, allowing us to have a comprehensive history of the codebase. When working on a project with others, SVN can help merge people's code changes together and help maintain a centralized version of the codebase.
 
 Detailed instructions about how to setup SVN can be found [here](https://wiki.penfieldrobotics.com/wiki/index.php?title=SVN_Setup).
 
