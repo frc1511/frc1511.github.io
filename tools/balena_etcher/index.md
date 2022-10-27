@@ -16,4 +16,4 @@ Balena Etcher is a non-FRC specific utility that is used to flash SD cards with 
 
 ## Installation
 
-* [Installer Download](https://www.balena.io/etcher/).
+* [Installer Download](https://www.balena.io/etcher/)

@@ -16,5 +16,5 @@ The REV Hardware Client is used to configure and test REV hardware, such as Spar
 
 ## Installation
 
-* [Installer Download](https://docs.revrobotics.com/rev-hardware-client/).
+* [Installer Download](https://docs.revrobotics.com/rev-hardware-client/)
 
