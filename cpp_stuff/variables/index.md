@@ -75,30 +75,6 @@ MyEnum f = MyEnum::A;
 int g = static_cast<int>(f); // Explicit conversion. g is now 0. This requires an explicit conversion because MyEnum is a strongly typed enum, and the compiler cannot implicitly convert it to an integer.
 ```
 
-## Aritmetic Operators
-
-Often, you will want to perform arithmetic operations on variables. The following operators are used for arithmetic operations:
-* `+` - Addition
-* `-` - Subtraction
-* `*` - Multiplication
-* `/` - Division
-* `%` - Modulus (remainder)
-  - This operator is only used with integers. It returns the remainder of the division of the two operands.
-  - For use with floating-point numbers, use the `std::fmod(lhs, rhs)` function.
-
-```cpp
-int x = 5 + 5; // "x" is now 10
-
-int y = (5 + 5) * 2 + 3; // "y" is now 23 (PEMDAS applies)
-
-int z = 5 / 2; // "z" is now 2 (the decimal part is truncated because "z" is an integer)
-double a = 5 / 2; // "a" is now 2.0 (the decimal part is truncated because "5" and "2" are integers, so the result of the division is an integer even though "a" is a double)
-double b = 5.0 / 2; // "b" is now 2.5 (the decimal part is not truncated because "5.0" is a double, so the result of the division is a double)
-
-int c = 5 % 2; // "c" is now 1 (5 divided by 2 is 2 with a remainder of 1)
-double d = std::fmod(5.5, 2); // "d" is now 1.5 (5.5 divided by 2 is 2 with a remainder of 1.5)
-```
-
 ## Pointers & References
 
 Sometimes, you might want to pass a variable to a function, but you don't want to make a copy of it. Instead, you want to pass the variable itself so that the function can modify it. This is where pointers and references come in. A pointer is a variable that stores the memory address of another variable, not the actual value of the variable. A pointer is declared with an asterisk '*' after the type of the variable it points to. To access the value of the variable that a pointer points to, you must use the dereference operator, which is also an asterisk '*'.
