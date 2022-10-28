@@ -7,6 +7,13 @@ parent: C++ Stuff
 
 # Functions
 
+* [Description](#description)
+* [Example 1 - Basic Function](#example-1---basic-function)
+* [Example 2 - Function with Parameters](#example-2---function-with-parameters)
+* [Example 3 - Function with Return Value](#example-3---function-with-return-value)
+
+## Description
+
 Functions contain a block of code that can be called from other parts of the program. Creating a function allows you to reuse code, and makes your code more readable and easier to maintain.
 
 Functions are declared with a name, a return type, and a list of parameters.
