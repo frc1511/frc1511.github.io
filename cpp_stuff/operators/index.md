@@ -145,3 +145,12 @@ int x = 5;
 int y = ++x; // "x" is now 6 and "y" is now 6 ("x" is incremented before "y" is assigned the value of "x")
 int z = x++; // "x" is now 7 and "z" is now 6 (the value of "x" is used before it is incremented)
 ```
+
+## Ternary Operator
+
+The ternary operator is used to choose a value based on a condition.
+
+```cpp
+int x = 5 > 3 ? 5 : 3; // "x" is now 5 (5 > 3 is true, so the value of "x" is 5)
+int y = 5 < 3 ? 5 : 3; // "y" is now 3 (5 < 3 is false, so the value of "y" is 3)
+```

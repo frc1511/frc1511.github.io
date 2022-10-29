@@ -10,7 +10,6 @@ parent: C++ Stuff
 * [Description](#description)
 * [Types](#types)
 * [Type Conversion](#type-conversion)
-* [Aritmetic Operators](#aritmetic-operators)
 * [Pointers & References](#pointers--references)
 * [Type Qualifiers & Storage Class Specifiers](#type-qualifiers--storage-class-specifiers)
 
