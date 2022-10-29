@@ -8,6 +8,10 @@ parent: C++ Stuff
 # Classes
 
 * [Description](#description)
+* [Class Members](#class-members)
+* [Class Usage](#class-usage)
+* [Constructors and Destructors](#constructors-and-destructors)
+* [Class Inheritance](#class-inheritance)
 
 ## Description
 
@@ -19,7 +23,7 @@ When a class is declared, a variable of that class type can be declared. This va
 
 ## Class Members
 
-Classes can contain [variables](/cpp_stuff/variables) and [functions](/cpp_stuff/functions). The access level of a class's members (data) can be specified by declaring them under the `public` and `private` sections. If a variable or function is declared under the `public` section, it can be accessed from within the class and from outside the class. If a variable or function is declared under the `private` section, it can only be accessed from within the class. It is typically good practice to declare most members as `private` and only declare the members that need to be accessed from outside the class as `public`.
+Classes can contain [variables](/cpp_stuff/variables) and [functions](/cpp_stuff/functions). The access level of a class's members can be specified by declaring them under the `public` and `private` sections. If a variable or function is declared under the `public` section, it can be accessed from within the class and from outside the class. If a variable or function is declared under the `private` section, it can only be accessed from within the class. It is typically good practice to declare most members as `private` and only declare the members that need to be accessed from outside the class as `public`.
 
 ```cpp 
 // --- MyClass.h ---
@@ -69,7 +73,7 @@ To declare a constructor function, the name of the class is used as the function
 
 class MyClass {
   public:
-    MyClass(); // Constructor function.
+    MyClass(int x); // Constructor function.
     ~MyClass(); // Destructor function.
 };
 
@@ -77,13 +81,17 @@ class MyClass {
 
 #include "MyClass.h"
 
-MyClass::MyClass() {
-  puts("MyClass was created!");
+MyClass::MyClass(int x) {
+  printf("MyClass was created! x = %d\n", x);
 }
 
 MyClass::~MyClass() {
   puts("MyClass was destroyed!");
 }
+
+// --- Other Source File ---
+
+MyClass myClass { 5 }; // Create a variable of type "MyClass" named "myClass" and call the constructor function with the parameter "5".
 ```
 
 ## Class Inheritance

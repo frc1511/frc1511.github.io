@@ -76,7 +76,7 @@ int g = static_cast<int>(f); // Explicit conversion. g is now 0. This requires a
 
 ## Pointers & References
 
-Sometimes, you might want to pass a variable to a function, but you don't want to make a copy of it. Instead, you want to pass the variable itself so that the function can modify it. This is where pointers and references come in. A pointer is a variable that stores the memory address of another variable, not the actual value of the variable. A pointer is declared with an asterisk '*' after the type of the variable it points to. To access the value of the variable that a pointer points to, you must use the dereference operator, which is also an asterisk '*'.
+Sometimes, you might want to pass a variable to a function, but you don't want to make a copy of it. Instead, you want to pass the variable itself so that the function can modify it. This is where pointers and references come in. A pointer is a variable that stores the memory address of another variable, not the actual value of the variable. A pointer is declared with an asterisk '\*' after the type of the variable it points to. To access the value of the variable that a pointer points to, you must use the dereference operator, which is also an asterisk '\*'.
 
 ```cpp
 int x = 5; // Declares an integer variable named "x" with the value 5.
@@ -88,7 +88,7 @@ int y = *xPtr; // Declares an integer variable named "y" with the value of the v
 *xPtr = 10; // Changes the value of the variable "x" to 10.
 ```
 
-A reference is essentially the same thing as a pointer, except that it is declared with an ampersand '&' instead of an asterisk '*', and it does not need to be dereferenced to access the value of the variable it points to.
+A reference is essentially the same thing as a pointer, except that it is declared with an ampersand '&' instead of an asterisk '\*', and it does not need to be dereferenced to access the value of the variable it points to.
 
 ```cpp
 int x = 5; // Declares an integer variable named "x" with the value 5.

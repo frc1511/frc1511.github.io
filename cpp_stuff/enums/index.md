@@ -28,16 +28,17 @@ The values of a basic loosly typed enumeration (like the one above) can be impli
 ```cpp
 enum MyEnum {
   OPTION_1 = 1,
-  OPTION_2 = 2,
+  OPTION_2,
   OPTION_3 = 3,
 };
 
 MyEnum myEnum = OPTION_1;
 
 int myInt = myEnum; // "myInt" is now 1 (implicitly converted from "myEnum")
+int myInt2 = OPTION_2; // "myInt2" is now 2 (implicitly converted from "OPTION_2")
 ```
 
-Enumerations can also be strongly typed. This means that the values of the enumeration cannot be implicitly converted to an integer. This is useful for preventing bugs that could occur if the values of an enumeration were accidentally used as integers. Values of strongly typed enumerations also need to be accessed using `EnumName::VALUE_NAME`.
+Enumerations can also be strongly typed. This means that the values of the enumeration cannot be implicitly converted to an integer. This is useful for preventing bugs that could occur if the values of an enumeration were accidentally used as integers. Values of strongly typed enumerations also need to be accessed using the `EnumName::VALUE_NAME` syntax.
 
 ```cpp
 enum class MyEnum {
