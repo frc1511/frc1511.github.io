@@ -12,7 +12,7 @@ parent: Tools
 
 ## Description
 
-<img src="/assets/images/homers_dashboard.jpeg" width="800">
+<img src="/assets/images/tools/homers_dashboard/homers_dashboard.jpeg" width="800">
 
 Homer's Dashboard is a custom dashboard for 1511's robots. It is used to provide diagnostic data about the robot, which is useful both for debugging and for providing information to the driver during competition. It also can set certain parameters of the robot, such as the autonomous mode to run, and the state of the LEDs.
 
