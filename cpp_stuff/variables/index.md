@@ -34,7 +34,7 @@ Every variable must be assigned a type when it is declared. The type determines 
 
 Throughout the code we also use a number of custom types that we have created ourselves. These include [classes](/cpp_stuff/classes) and [enums](/cpp_stuff/enums/).
 
-```cpp
+{% highlight cpp %}
 int x = 5; // Declares an integer variable named "x" with the value 5.
 x = 10; // Changes the value of "x" to 10.
 
@@ -50,13 +50,13 @@ myList.at(0) = 10; // Changes the value of index 0 of the vector "myList" to 10.
 unsigned int myListSize = myList.size(); // Declares an integer variable named "myListSize" with the number of elements in the vector "myList", which is 5.
 int z = myList.at(6); // ERROR: Index 6 is out of bounds of the vector "myList", which only has 5 elements.
 myList.push_back(6); // Adds the value 6 to the end of the vector "myList".
-```
+{% endhighlight %}
 
 ## Type Conversion
 
 Sometimes, you might want to convert a variable from one type to another. In most situations, conversion is done automatically without any special syntax (implicit conversion). However, there are some cases where you need to explicitly convert a variable from one type to another (explicit conversion).
 
-```cpp
+{% highlight cpp %}
 int x = 5;
 float y = x; // Implicit conversion. y is now 5.0
 
@@ -72,13 +72,13 @@ int e = static_cast<int>(d); // Explicit conversion. e is now 5 (the decimal par
 enum class MyEnum { A, B, C };
 MyEnum f = MyEnum::A;
 int g = static_cast<int>(f); // Explicit conversion. g is now 0. This requires an explicit conversion because MyEnum is a strongly typed enum, and the compiler cannot implicitly convert it to an integer.
-```
+{% endhighlight %}
 
 ## Pointers & References
 
 Sometimes, you might want to pass a variable to a function, but you don't want to make a copy of it. Instead, you want to pass the variable itself so that the function can modify it. This is where pointers and references come in. A pointer is a variable that stores the memory address of another variable, not the actual value of the variable. A pointer is declared with an asterisk '\*' after the type of the variable it points to. To access the value of the variable that a pointer points to, you must use the dereference operator, which is also an asterisk '\*'.
 
-```cpp
+{% highlight cpp %}
 int x = 5; // Declares an integer variable named "x" with the value 5.
 
 int* xPtr = &x; // Declares a pointer to an integer named "xPtr" that points to the variable "x".
@@ -86,11 +86,11 @@ int* xPtr = &x; // Declares a pointer to an integer named "xPtr" that points to 
 int y = *xPtr; // Declares an integer variable named "y" with the value of the variable "x", which is 5.
 
 *xPtr = 10; // Changes the value of the variable "x" to 10.
-```
+{% endhighlight %}
 
 A reference is essentially the same thing as a pointer, except that it is declared with an ampersand '&' instead of an asterisk '\*', and it does not need to be dereferenced to access the value of the variable it points to.
 
-```cpp
+{% highlight cpp %}
 int x = 5; // Declares an integer variable named "x" with the value 5.
 
 int& xRef = x; // Declares a reference to an integer named "xRef" that points to the variable "x".
@@ -98,7 +98,7 @@ int& xRef = x; // Declares a reference to an integer named "xRef" that points to
 int y = xRef; // Declares an integer variable named "y" with the value of the variable "x", which is 5.
 
 xRef = 10; // Changes the value of the variable "x" to 10.
-```
+{% endhighlight %}
 
 ## Type Qualifiers & Storage Class Specifiers
 
@@ -106,11 +106,11 @@ Type qualifiers and storage class specifiers are used to modify the type of a va
 * `const` - Flags a variable as constant, meaning that it cannot be changed.
 * `static` - Flags a variable as static, meaning that it will not be destroyed when the function it is declared in ends.
 
-```cpp
+{% highlight cpp %}
 const int x = 5; // Declares a constant integer variable named "x" with the value 5.
 
 x = 10; // ERROR: Cannot change the value of a constant variable.
 
 static int y = 5; // Declares a static integer variable named "y" with the value 5.
 // ^ This variable will not be destroyed when the function ends, so it will still have the value 5 when the function is called again unless it is changed later.
-```
+{% endhighlight %}

@@ -25,7 +25,7 @@ When a class is declared, a variable of that class type can be declared. This va
 
 Classes can contain [variables](/cpp_stuff/variables) and [functions](/cpp_stuff/functions). The access level of a class's members can be specified by declaring them under the `public` and `private` sections. If a variable or function is declared under the `public` section, it can be accessed from within the class and from outside the class. If a variable or function is declared under the `private` section, it can only be accessed from within the class. It is typically good practice to declare most members as `private` and only declare the members that need to be accessed from outside the class as `public`.
 
-```cpp 
+{% highlight cpp %}
 // --- MyClass.h ---
 
 class MyClass {
@@ -49,18 +49,18 @@ void MyClass::myPublicFunction() {
 void MyClass::myPrivateFunction() {
   printf("myPrivateFunction! myPrivateVariable = %d\n", myPrivateVariable);
 }
-```
+{% endhighlight %}
 
 ## Class Usage
 
 The `MyClass` class can be used in other source files by declaring a variable of type `MyClass`:
 
-```cpp
+{% highlight cpp %}
 MyClass myClass; // Declare a variable of type "MyClass" named "myClass".
 
 myClass.myPublicFunction(); // Call the "myPublicFunction" function.
 myClass.myPrivateFunction(); // ERROR: "myPrivateFunction" is a private function, so it cannot be called from outside the class.
-```
+{% endhighlight %}
 
 ## Constructors and Destructors
 
@@ -68,7 +68,7 @@ Sometimes it might be useful for a class to perform some initialization when it 
 
 To declare a constructor function, the name of the class is used as the function name. To declare a destructor function, the name of the class is used as the function name, prefixed with a tilde (~). The constructor and destructor functions are typically declared in the public section of the class.
 
-```cpp
+{% highlight cpp %}
 // --- MyClass.h ---
 
 class MyClass {
@@ -92,13 +92,13 @@ MyClass::~MyClass() {
 // --- Other Source File ---
 
 MyClass myClass { 5 }; // Create a variable of type "MyClass" named "myClass" and call the constructor function with the parameter "5".
-```
+{% endhighlight %}
 
 ## Class Inheritance
 
 Classes can be derived from other classes. This allows a class to inherit functions and variables from another class. Derived classes work the same as normal classes, except that they can also access functions and variables from the base class. Base classes can contain `protected` members along with `public` and `private` members. `protected` members act as `private` members to the base class, but can be accessed by the derived class as `public` members.
 
-```cpp
+{% highlight cpp %}
 // --- BaseClass.h ---
 
 class BaseClass {
@@ -130,11 +130,11 @@ void DerivedClass::myDerivedFunction() {
   myProtectedFunction(); // OK: "myProtectedFunction" is a protected member of the base class, but can be accessed by the derived class as a public member.
   myPrivateFunction(); // ERROR: "myPrivateFunction" is a private member of the base class, so it cannot be accessed by the derived class.
 }
-```
+{% endhighlight %}
 
 Base classes can declare `virtual` functions. A virtual function is a function that can be re-implemented (overriden) by the derived class. When a virtual function is called on an instance of the derived class, the function in the derived class is called instead of the function in the base class. The base class can also declare a pure virtual function. A pure virtual function is a function that has no implementation in the base class and must be implemented in the derived class (otherwise the derived class is also considered abstract and cannot be instantiated).
 
-```cpp
+{% highlight cpp %}
 // --- BaseClass.h ---
 
 class BaseClass {
@@ -164,4 +164,4 @@ void DerivedClass::myVirtualFunction() {
 void DerivedClass::myPureVirtualFunction() {
   puts("myPureVirtualFunction was called!");
 }
-```
+{% endhighlight %}

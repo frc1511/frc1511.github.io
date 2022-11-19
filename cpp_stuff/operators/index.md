@@ -34,7 +34,7 @@ NOTE: It is important to remember that the result of an operation depends on the
   - This operator is only used with integers. It returns the remainder of the division of the two operands.
   - For use with floating-point numbers, use the `std::fmod(lhs, rhs)` function.
 
-```cpp
+{% highlight cpp %}
 int x = 5 + 5; // "x" is now 10
 
 int y = (5 + 5) * 2 + 3; // "y" is now 23 (PEMDAS applies)
@@ -45,7 +45,7 @@ double b = 5.0 / 2; // "b" is now 2.5 (the decimal part is not truncated because
 
 int c = 5 % 2; // "c" is now 1 (5 divided by 2 is 2 with a remainder of 1)
 double d = std::fmod(5.5, 2); // "d" is now 1.5 (5.5 divided by 2 is 2 with a remainder of 1.5)
-```
+{% endhighlight %}
 
 ## Relational Operators
 
@@ -58,14 +58,14 @@ Relational operators are used to compare two operands. The following table lists
 * `>=` - Greater than or equal to
 * `<=` - Less than or equal to
 
-```cpp
+{% highlight cpp %}
 bool x = 5 == 5; // "x" is now true
 bool y = 5 != 5; // "y" is now false
 bool z = 5 > 5; // "z" is now false
 bool a = 5 < 5; // "a" is now false
 bool b = 5 >= 5; // "b" is now true
 bool c = 5 <= 5; // "c" is now true
-```
+{% endhighlight %}
 
 ## Logical Operators
 
@@ -75,13 +75,13 @@ Logical operators are used to combine two or more conditions. The following tabl
 * `||` - Logical OR
 * `!` - Logical NOT
 
-```cpp
+{% highlight cpp %}
 bool x = true && true; // "x" is now true
 bool y = true && false; // "y" is now false
 bool z = true || true; // "z" is now true
 bool a = true || false; // "a" is now true
 bool b = !true; // "b" is now false
-```
+{% endhighlight %}
 
 ## Bitwise Operators
 
@@ -94,7 +94,7 @@ Bitwise operators are used to perform bitwise operations on variables and values
 * `<<` - Bitwise left shift
 * `>>` - Bitwise right shift
 
-```cpp
+{% highlight cpp %}
 int x = 5 & 3; // "x" is now 1 (5 in binary is 101, 3 in binary is 011, 101 & 011 is 001, which is 1 in decimal)
 int y = 5 | 2; // "y" is now 7 (5 in binary is 101, 2 in binary is 010, 101 | 010 is 111, which is 7 in decimal)
 int z = 5 ^ 3; // "z" is now 6 (5 in binary is 101, 3 in binary is 011, 101 ^ 011 is 110, which is 6 in decimal)
@@ -102,7 +102,7 @@ int a = ~5; // "a" is now -6 (5 in binary is 101, so ~5 is 010, which is 2 in de
 int b = 2 << 1; // "b" is now 4 (2 in binary is 10, so 2 << 1 is 100, which is 4 in decimal)
 int c = 2 >> 1; // "c" is now 1 (2 in binary is 10, so 2 >> 1 is 1, which is 1 in decimal)
 int d = 2 << 3; // "d" is now 16 (2 in binary is 10, so 2 << 3 is 10000, which is 16 in decimal)
-```
+{% endhighlight %}
 
 ## Assignment Operators
 
@@ -120,10 +120,10 @@ Assignment operators are used to assign values to variables. The following table
 * `<<=` - Performs a bitwise left shift operation on a variable and a value and assigns the result to the variable
 * `>>=` - Performs a bitwise right shift operation on a variable and a value and assigns the result to the variable
 
-```cpp
+{% highlight cpp %}
 int x = 5;
 x += 5; // "x" is now 10
-```
+{% endhighlight %}
 
 ## Increment and Decrement Operators
 
@@ -132,25 +132,25 @@ Increment and decrement operators are used to increment or decrement a variable 
 * `++` - Increments a variable by 1
 * `--` - Decrements a variable by 1
 
-```cpp
+{% highlight cpp %}
 int x = 5;
 x++; // "x" is now 6
 x--; // "x" is now 5
-```
+{% endhighlight %}
 
 The increment and decrement operators can be placed before or after a variable. If they are placed before a variable, the variable is incremented or decremented before the value is used. If they are placed after a variable, the variable is incremented or decremented after the value is used.
 
-```cpp
+{% highlight cpp %}
 int x = 5;
 int y = ++x; // "x" is now 6 and "y" is now 6 ("x" is incremented before "y" is assigned the value of "x")
 int z = x++; // "x" is now 7 and "z" is now 6 (the value of "x" is used before it is incremented)
-```
+{% endhighlight %}
 
 ## Ternary Operator
 
 The ternary operator is used to choose a value based on a condition.
 
-```cpp
+{% highlight cpp %}
 int x = 5 > 3 ? 5 : 3; // "x" is now 5 (5 > 3 is true, so the value of "x" is 5)
 int y = 5 < 3 ? 5 : 3; // "y" is now 3 (5 < 3 is false, so the value of "y" is 3)
-```
+{% endhighlight %}
