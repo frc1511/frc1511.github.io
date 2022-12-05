@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Configuring the Radio
-nav_order: 2
+nav_order: 3
 parent: Tutorials
 ---
 
@@ -11,8 +11,8 @@ The robot's radio is used to route data between the robot and the computer's dri
 
 There are a few circumstances where the radio needs to be re-configured, including:
 
-1. Brand new radios need to be configured before they can be used.
-  - This process is a tad more complicated because you have to load the radio's firmware onto it, then configure it.
+1. New radios need firmware loaded onto them, then need to be configured.
 2. Following a competition, the radio needs to be re-configured in order to once again connect wirelessly to the driver station.
-  - Pretty simple. The radio just needs to be configured with the ssid and team number.
+
+To see detailed instructions on how to program the radio, see [this page](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-3/radio-programming.html).
 

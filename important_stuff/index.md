@@ -12,7 +12,7 @@ nav_order: 2
 Utilizing the official documentation for the vendor libraries is an essential skill for programmers on the team. Having an understanding of the functionality provided by each library can make finding solutions to problems easier and can help you write more efficient code.
 * [FRC Control System Documentation](http://docs.wpilib.org/)
   - Documentation for the FRC Control System and comprehensive examples for most things.
-* [WPILib C++ API](https://first.wpi.edu/wpilib/allwpilib/docs/release/cpp/index.html)
+* [WPILib C++ API](https://github.wpilib.org/allwpilib/docs/release/cpp/index.html)
   - WPILib API Reference.
 * [CTRE Phoenix Documentation](https://docs.ctre-phoenix.com/en/latest/index.html)
   - Documentation for Cross-The-Road Electronics hardware, such as TalonFX Motor Montrollers, CANCoders, and Pigeon IMUs.

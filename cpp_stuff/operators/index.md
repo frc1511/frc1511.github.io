@@ -24,7 +24,8 @@ Operators are used to perform operations on variables and values. Most operators
 
 Arithmetic operators are used to perform arithmetic operations on variables and values. The following table lists the arithmetic operators:
 
-NOTE: It is important to remember that the result of an operation depends on the types of the operands. For example, the result of `5 / 2` is `2`, but the result of `5.0 / 2` is `2.5`. In the first example, both operands are integers, so the result is an integer. In the second example, one operand is a floating-point number, so the result is a floating-point number.
+{: .important }
+Remember that the result of an operation depends on the types of the operands. For example, the result of `5 / 2` is `2`, but the result of `5.0 / 2` is `2.5`. In the first example, both operands are integers, so the result is an integer. In the second example, one operand is a floating-point number, so the result is a floating-point number.
 
 * `+` - Addition
 * `-` - Subtraction
@@ -35,16 +36,33 @@ NOTE: It is important to remember that the result of an operation depends on the
   - For use with floating-point numbers, use the `std::fmod(lhs, rhs)` function.
 
 {% highlight cpp %}
-int x = 5 + 5; // "x" is now 10
+// "x" is now 10
+int x = 5 + 5;
 
-int y = (5 + 5) * 2 + 3; // "y" is now 23 (PEMDAS applies)
+// "y" is now 23 (PEMDAS applies)
+int y = (5 + 5) * 2 + 3;
 
-int z = 5 / 2; // "z" is now 2 (the decimal part is truncated because "z" is an integer)
-double a = 5 / 2; // "a" is now 2.0 (the decimal part is truncated because "5" and "2" are integers, so the result of the division is an integer even though "a" is a double)
-double b = 5.0 / 2; // "b" is now 2.5 (the decimal part is not truncated because "5.0" is a double, so the result of the division is a double)
+// "z" is now 2 (the decimal part is truncated because "z" is an integer)
+int z = 5 / 2;
 
-int c = 5 % 2; // "c" is now 1 (5 divided by 2 is 2 with a remainder of 1)
-double d = std::fmod(5.5, 2); // "d" is now 1.5 (5.5 divided by 2 is 2 with a remainder of 1.5)
+/**
+ * "a" is now 2.0 (the decimal part is truncated because "5" and "2"
+ * are integers, so the result of the division is an integer even though
+ * "a" is a double)
+ */
+double a = 5 / 2;
+
+/**
+ * "b" is now 2.5 (the decimal part is not truncated because "5.0" is a
+ * double, so the result of the division is a double)
+ */
+double b = 5.0 / 2;
+
+// "c" is now 1 (5 divided by 2 is 2 with a remainder of 1)
+int c = 5 % 2;
+
+// "d" is now 1.5 (5.5 divided by 2 is 2 with a remainder of 1.5)
+double d = std::fmod(5.5, 2);
 {% endhighlight %}
 
 ## Relational Operators
@@ -61,8 +79,8 @@ Relational operators are used to compare two operands. The following table lists
 {% highlight cpp %}
 bool x = 5 == 5; // "x" is now true
 bool y = 5 != 5; // "y" is now false
-bool z = 5 > 5; // "z" is now false
-bool a = 5 < 5; // "a" is now false
+bool z = 5 > 5;  // "z" is now false
+bool a = 5 < 5;  // "a" is now false
 bool b = 5 >= 5; // "b" is now true
 bool c = 5 <= 5; // "c" is now true
 {% endhighlight %}
@@ -76,11 +94,11 @@ Logical operators are used to combine two or more conditions. The following tabl
 * `!` - Logical NOT
 
 {% highlight cpp %}
-bool x = true && true; // "x" is now true
+bool x = true && true;  // "x" is now true
 bool y = true && false; // "y" is now false
-bool z = true || true; // "z" is now true
+bool z = true || true;  // "z" is now true
 bool a = true || false; // "a" is now true
-bool b = !true; // "b" is now false
+bool b = !true;         // "b" is now false
 {% endhighlight %}
 
 ## Bitwise Operators
@@ -98,7 +116,7 @@ Bitwise operators are used to perform bitwise operations on variables and values
 int x = 5 & 3; // "x" is now 1 (5 in binary is 101, 3 in binary is 011, 101 & 011 is 001, which is 1 in decimal)
 int y = 5 | 2; // "y" is now 7 (5 in binary is 101, 2 in binary is 010, 101 | 010 is 111, which is 7 in decimal)
 int z = 5 ^ 3; // "z" is now 6 (5 in binary is 101, 3 in binary is 011, 101 ^ 011 is 110, which is 6 in decimal)
-int a = ~5; // "a" is now -6 (5 in binary is 101, so ~5 is 010, which is 2 in decimal, and 2 in decimal is -6 in two's complement)
+int a = ~5; // "a" is now -6 (5 in binary is 101, ~101 is 010, which is 2 in decimal, but 2 is a positive number, so -2 is 2's complement, which is -6)
 int b = 2 << 1; // "b" is now 4 (2 in binary is 10, so 2 << 1 is 100, which is 4 in decimal)
 int c = 2 >> 1; // "c" is now 1 (2 in binary is 10, so 2 >> 1 is 1, which is 1 in decimal)
 int d = 2 << 3; // "d" is now 16 (2 in binary is 10, so 2 << 3 is 10000, which is 16 in decimal)
@@ -142,8 +160,17 @@ The increment and decrement operators can be placed before or after a variable. 
 
 {% highlight cpp %}
 int x = 5;
-int y = ++x; // "x" is now 6 and "y" is now 6 ("x" is incremented before "y" is assigned the value of "x")
-int z = x++; // "x" is now 7 and "z" is now 6 (the value of "x" is used before it is incremented)
+/**
+ * "x" is now 6 and "y" is 6 ("x" is incremented before "y" is assigned
+ * the value of "x")
+ */
+int y = ++x;
+
+/**
+ * "x" is now 7 and "z" is 6 (the value of "x" is used before it is
+ * incremented)
+ */
+int z = x++;
 {% endhighlight %}
 
 ## Ternary Operator
@@ -151,6 +178,9 @@ int z = x++; // "x" is now 7 and "z" is now 6 (the value of "x" is used before i
 The ternary operator is used to choose a value based on a condition.
 
 {% highlight cpp %}
-int x = 5 > 3 ? 5 : 3; // "x" is now 5 (5 > 3 is true, so the value of "x" is 5)
-int y = 5 < 3 ? 5 : 3; // "y" is now 3 (5 < 3 is false, so the value of "y" is 3)
+// "x" is now 5 (5 > 3 is true, so the value of "x" is 5)
+int x = 5 > 3 ? 5 : 3;
+
+// "y" is now 3 (5 < 3 is false, so the value of "y" is 3)
+int y = 5 < 3 ? 5 : 3;
 {% endhighlight %}

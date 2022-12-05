@@ -29,13 +29,27 @@ Classes can contain [variables](/cpp_stuff/variables) and [functions](/cpp_stuff
 // --- MyClass.h ---
 
 class MyClass {
-  public: // Start of the public section.
-    void myPublicFunction(); // Declares a function named "myPublicFunction" that can be accessed from inside and outside the class.
+public: // Start of the public section.
 
-  private: // Start of the private section.
-    void myPrivateFunction(); // Declares a function named "myPrivateFunction" that can only be accessed from inside the class.
+  /**
+    * Declares a function named "myPublicFunction" that can be accessed
+    * from inside and outside the class.
+    */
+  void myPublicFunction();
 
-    int myPrivateVariable; // Declares a variable named "myPrivateVariable" that can only be accessed from inside the class.
+private: // Start of the private section.
+
+  /**
+    * Declares a function named "myPrivateFunction" that can only be
+    * accessed from inside the class.
+    */
+  void myPrivateFunction();
+
+  /**
+    * Declares a variable named "myPrivateVariable" that can only be
+    * accessed from inside the class.
+    */
+  int myPrivateVariable;
 };
 
 // --- MyClass.cpp ---
@@ -56,10 +70,17 @@ void MyClass::myPrivateFunction() {
 The `MyClass` class can be used in other source files by declaring a variable of type `MyClass`:
 
 {% highlight cpp %}
-MyClass myClass; // Declare a variable of type "MyClass" named "myClass".
+// Declare a variable of type "MyClass" named "myClass".
+MyClass myClass;
 
-myClass.myPublicFunction(); // Call the "myPublicFunction" function.
-myClass.myPrivateFunction(); // ERROR: "myPrivateFunction" is a private function, so it cannot be called from outside the class.
+// Call the "myPublicFunction" function.
+myClass.myPublicFunction();
+
+/**
+ * ERROR: "myPrivateFunction" is a private function, so it cannot be
+ * called from outside the class.
+ */
+myClass.myPrivateFunction();
 {% endhighlight %}
 
 ## Constructors and Destructors
@@ -72,9 +93,9 @@ To declare a constructor function, the name of the class is used as the function
 // --- MyClass.h ---
 
 class MyClass {
-  public:
-    MyClass(int x); // Constructor function.
-    ~MyClass(); // Destructor function.
+public:
+  MyClass(int x); // Constructor function.
+  ~MyClass(); // Destructor function.
 };
 
 // --- MyClass.cpp ---
@@ -91,7 +112,11 @@ MyClass::~MyClass() {
 
 // --- Other Source File ---
 
-MyClass myClass { 5 }; // Create a variable of type "MyClass" named "myClass" and call the constructor function with the parameter "5".
+/**
+ * Create a variable of type "MyClass" named "myClass" and call the
+ * constructor function with the parameter "5".
+ */
+MyClass myClass { 5 };
 {% endhighlight %}
 
 ## Class Inheritance
@@ -102,14 +127,14 @@ Classes can be derived from other classes. This allows a class to inherit functi
 // --- BaseClass.h ---
 
 class BaseClass {
-  public:
-    void myPublicFunction();
+public:
+  void myPublicFunction();
 
-  protected:
-    void myProtectedFunction();
+protected:
+  void myProtectedFunction();
 
-  private:
-    void myPrivateFunction();
+private:
+  void myPrivateFunction();
 };
 
 // --- DerivedClass.h ---
@@ -117,8 +142,8 @@ class BaseClass {
 #include "BaseClass.h"
 
 class DerivedClass : public BaseClass {
-  public:
-    void myDerivedFunction();
+public:
+  void myDerivedFunction();
 };
 
 // --- DerivedClass.cpp ---
@@ -126,9 +151,22 @@ class DerivedClass : public BaseClass {
 #include "DerivedClass.h"
 
 void DerivedClass::myDerivedFunction() {
-  myPublicFunction(); // OK: "myPublicFunction" is a public member of the base class.
-  myProtectedFunction(); // OK: "myProtectedFunction" is a protected member of the base class, but can be accessed by the derived class as a public member.
-  myPrivateFunction(); // ERROR: "myPrivateFunction" is a private member of the base class, so it cannot be accessed by the derived class.
+  /**
+   * OK: "myPublicFunction" is a public member of the base class.
+   */
+  myPublicFunction();
+
+  /**
+   * OK: "myProtectedFunction" is a protected member of the base class,
+   * but can be accessed by the derived class as a public member.
+   */
+  myProtectedFunction();
+
+  /**
+   * ERROR: "myPrivateFunction" is a private member of the base class,
+   * so it cannot be accessed by the derived class.
+   */
+  myPrivateFunction();
 }
 {% endhighlight %}
 
@@ -138,9 +176,12 @@ Base classes can declare `virtual` functions. A virtual function is a function t
 // --- BaseClass.h ---
 
 class BaseClass {
-  public:
-    virtual void myVirtualFunction(); // A virtual function. Can be re-implemented in the derived class.
-    virtual void myPureVirtualFunction() = 0; // A pure virtual function. Must be re-implemented in the derived class.
+public:
+  // A virtual function. Can be re-implemented in the derived class.
+  virtual void myVirtualFunction();
+
+  // A pure virtual function. MUST be re-implemented in the derived class.
+  virtual void myPureVirtualFunction() = 0;
 };
 
 // --- DerivedClass.h ---
@@ -148,9 +189,9 @@ class BaseClass {
 #include "BaseClass.h"
 
 class DerivedClass : public BaseClass {
-  public:
-    void myVirtualFunction() override;
-    void myPureVirtualFunction() override;
+public:
+  void myVirtualFunction() override;
+  void myPureVirtualFunction() override;
 };
 
 // --- DerivedClass.cpp ---

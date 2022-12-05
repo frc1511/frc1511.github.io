@@ -1,7 +1,7 @@
 ---
 layout: page
 title: REV Hardware Client
-nav_order: 7
+nav_order: 8
 parent: Tools
 ---
 

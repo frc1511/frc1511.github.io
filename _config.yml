@@ -1,6 +1,5 @@
-title: 1511 Programming
-description: >-
-  The greatest subteam on 1511.
+title: FRC 1511 Docs
+description: The greatest subteam on 1511.
 baseurl: /
 url: https://frc1511.github.io
 domain: frc1511.github.io
@@ -12,7 +11,9 @@ search_enabled: true
 
 markdown: kramdown
 highlighter: rouge
-    input: GFM
+  # input: GFM
+
+footer_content: "Rolling Thunder Programming Subteam - The Greatest Subteam on 1511"
 
 callouts_level: quiet # or loud
 callouts_opacity: 0.15

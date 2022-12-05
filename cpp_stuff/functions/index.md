@@ -22,37 +22,46 @@ Functions are declared with a name, a return type, and a list of parameters.
 
 {% highlight cpp %}
 void sayHi() {
-  puts("Hi!"); // Prints "Hi!" to the console.
+  // Prints "Hi!" to the console.
+  puts("Hi!");
 }
 {% endhighlight %}
 The function above is named "sayHi". It has no parameters, and it returns nothing (void). The function prints "Hi!" to the console when it is called, and then ends and returns to the calling function. Inside the function, the `puts()` function is called to print "Hi!" to the console. This transfers control away from the `sayHi()` function temporarily to print "Hi!", then returns control back to the `sayHi()` function after it is done printing. An example of calling this function is shown below:
 
 {% highlight cpp %}
-sayHi(); // Prints "Hi!" to the console.
+// Runs the sayHi() function, which prints "Hi!" to the console.
+sayHi();
 {% endhighlight %}
 
 ## Example 2 - Function with Parameters
 
 {% highlight cpp %}
 void sayHiTo(std::string name) {
-  printf("Hi, %s!\n", name.c_str()); // Prints "Hi, <name>!" to the console.
+  // Prints "Hi, <name>!" to the console.
+  printf("Hi, %s!\n", name.c_str());
 }
 {% endhighlight %}
 The function above is named "sayHiTo". It has one parameter, which is of type `std::string` and is named "name". The function returns nothing (void). The function uses its parameter "name" when it prints "Hi, \<name\>!" to the console. An example of calling this function is shown below:
 
 {% highlight cpp %}
-sayHiTo("Jeff"); // Prints "Hi, Jeff!" to the console.
+// Runs the sayHiTo() function, which prints "Hi, Jeff!" to the console.
+sayHiTo("Jeff");
 {% endhighlight %}
 
 ## Example 3 - Function with Return Value
 
 {% highlight cpp %}
 int add(int a, int b) {
-  return a + b; // Returns the sum of a and b.
+  // Returns the sum of a and b.
+  return a + b;
 }
 {% endhighlight %}
 The function above is named "add". It has two parameters, "a" and "b", which are both of type `int`. The function returns an `int` value, the sum of "a" and "b". An example of calling this function is shown below:
 
 {% highlight cpp %}
-int x = add(4, 2); // x is now equal to 6.
+/**
+ * Runs the add() function and assigns its return value to the variable
+ * "x", which is 6.
+ */
+int x = add(4, 2);
 {% endhighlight %}

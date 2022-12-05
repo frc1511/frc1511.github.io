@@ -11,7 +11,8 @@ has_toc: false
 ## Coding Software
 Software required to program the robot.
 * [WPILib](/tools/wpilib/)
-* [Subversion (SVN)](/tools/svn/)
+* [Git](/tools/git/)
+* Maybe [SVN](/tools/svn/)
 
 ## Team Software
 Software created by the team for the team :D

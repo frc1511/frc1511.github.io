@@ -7,4 +7,4 @@ has_children: true
 
 # Tutorials
 
-These are tutorials for various programming-related topics.
+These are tutorials for miscellaneous programming tasks.

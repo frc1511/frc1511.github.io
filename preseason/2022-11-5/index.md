@@ -19,28 +19,11 @@ This is the first hands-on meeting of the 2022-2023 Pre-Season! We will be going
 
 ## IDE Overview
 
-An IDE (Integrated Development Environment) is a program that centralizes all of the tools you need to write code. We use a special version of VS Code for FRC called WPILib VS Code. It contains tools to help you create, debug, and deploy robot code.
+An IDE (Integrated Development Environment) is a program that centralizes all of the tools you need to write code. We use a special version of Visual Studio Code for FRC called WPILib VS Code. It contains tools to help you create, debug, and deploy robot code.
 
 ### Creating a Project
 
-To create a project, click on the WPILib icon in the top right corner of VS Code. Then search for "Create a new project" in the command palette.
-
-<img src="/assets/images/wpilib/vscode/new_project_1.webp" width=800>
-
-Then you should see the "New Project Creator Window"
-
-<img src="/assets/images/wpilib/vscode/new_project_2.webp" width=800>
-
-1. __Project Type:__ This is the type of the project. Select "Template".
-2. __Language:__ This is the programming language of the project. We always use "C++".
-3. __Project Base:__ This is template that the project will be based on. We use "Timed Robot".
-4. __Base Folder:__ The folder on the computer where the project will be stored (ex. Documents folder).
-5. __Project Name:__ The name of the project (ex. Homer or thunderbot2023).
-6. __Create a New Folder:__ Select this if you want it to create a new folder named `Project Name` in the `Base Folder` (You usually do).
-7. __Team Number:__ The team number (1511 unless you're a traitor).
-8. __Enable Desktop Support:__ This is for simulating the robot code on your computer. I've never used it, and you probably won't either, so just leave it unchecked unless you're feeling adventurous. (I've seen this break some builds because not every library works with desktop support).
-
-Once all the fields have been configured, click "Generate Project" and the project will be created. VS Code should then prompt you to open the project.
+To create a project, follow [this tutorial](/tutorials/creating_project/).
 
 ## Robot Code Structure
 
@@ -53,9 +36,7 @@ For a detailed explanation of the C++ header/source file structure, see the page
 
 The robot program begins with the `src/main/include/Robot.h` and `src/main/cpp/Robot.cpp` files. These files contain code for the `Robot` class, which handles the distribution of processes during the robot's runtime. The `Robot` class is a subclass of the `frc::TimedRobot` class, which provides functions that run during the robot's different states.
 
-For example, the `Robot::RobotInit()` function is called when the robot is first turned on. The `Robot::RobotPeriodic()` function is called every 20ms while the robot is on. There are also other 'Init' and 'Periodic' functions for specific robot states, such as `Robot::AutonomousInit()` and `Robot::AutonomousPeriodic()` for when the robot is in autonomous mode.
-
-__Note:__ Periodic functions like `Robot::RobotPeriodic()` are called every 20ms, so they should not contain any long-running code or else the robot will not respond to inputs in a timely manner. That means no long/infinite loops or constant motor configuration changes in the periodic functions!
+For example, the `Robot::RobotInit()` function is called when the robot is first turned on. The `Robot::RobotPeriodic()` function is called every 20ms while the robot is on. There are also other 'Init' and 'Periodic' functions for specific robot states, such as `Robot::AutonomousInit()` and `Robot::AutonomousPeriodic()` for when the robot is in autonomous mode. For a detailed explanation of the `frc::TimedRobot` class, see the page on it [here](/robot_programming/timed_robot/).
 
 {% highlight cpp %}
 #include <Robot.h>

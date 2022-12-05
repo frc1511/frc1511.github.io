@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Balena Etcher
-nav_order: 8
+nav_order: 9
 parent: Tools
 ---
 

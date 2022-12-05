@@ -28,5 +28,5 @@ It is important to update WPILib whenever a new version is released to ensure th
 ## Official Documentation
 * [WPILib Documentation](http://docs.wpilib.org/)
   - Documentation for the FRC Game Tools and WPILib. Contains tons of comprehensive examples for most things.
-* [WPILib C++ API](https://first.wpi.edu/wpilib/allwpilib/docs/release/cpp/index.html)
+* [WPILib C++ API](https://github.wpilib.org/allwpilib/docs/release/cpp/index.html)
   - WPILib API Reference.
