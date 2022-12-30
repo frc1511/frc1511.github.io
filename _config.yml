@@ -1,8 +1,19 @@
 title: FRC 1511 Docs
-description: The greatest subteam on 1511.
+tagline: FRC Team 1511 Rolling Thunder's Programming Website
+description: Programming Website for FIRST Robotics Team 1511 Rolling Thunder
+description: A centralized place for all of FRC Team 1511 Rolling Thunder's programming documentation. Includes information about our robots, programming tools, and our techniques and best practices for programming our robots.
 baseurl: /
 url: https://frc1511.github.io
 domain: frc1511.github.io
+social:
+  name: FRC Team 1511 Rolling Thunder
+  links:
+    - https://penfieldrobotics.com/
+    - https://github.com/frc1511
+    - https://twitter.com/1511
+    - https://facebook.com/penfieldrobotics
+    - https://www.instagram.com/firstteam1511/
+    - https://www.youtube.com/user/PenfieldRobotics
 
 remote_theme: just-the-docs/just-the-docs
 color_scheme: thunder

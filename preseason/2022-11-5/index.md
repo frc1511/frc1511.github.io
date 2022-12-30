@@ -32,7 +32,7 @@ The robot's source code can be found in the `src/main` folder. Inside of this fo
 * `include` - This is where the C++ header files are stored (.h files).
 * `deploy` - This is where random files go that need to be deployed to the robot (ex. Autonomous path files, configuration files, etc.).
 
-For a detailed explanation of the C++ header/source file structure, see the page on C++ classes [here](/cpp_stuff/classes/). A simple explaination is that the header files (.h) contain the class declarations and no actual function implementations. The source files (.cpp) contain the function implementations and other symbols.
+For a detailed explanation of the C++ header/source file structure, see the page on C++ classes [here](/cpp_docs/classes/). A simple explaination is that the header files (.h) contain the class declarations and no actual function implementations. The source files (.cpp) contain the function implementations and other symbols.
 
 The robot program begins with the `src/main/include/Robot.h` and `src/main/cpp/Robot.cpp` files. These files contain code for the `Robot` class, which handles the distribution of processes during the robot's runtime. The `Robot` class is a subclass of the `frc::TimedRobot` class, which provides functions that run during the robot's different states.
 

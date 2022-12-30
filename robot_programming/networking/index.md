@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Networking
-nav_order: 6
+nav_order: 7
 parent: Robot Programming
 ---
 
@@ -12,6 +12,7 @@ parent: Robot Programming
   - [Initialization](#initialization)
   - [Reading Data](#reading-data)
   - [Writing Data](#writing-data)
+  - [SmartDashboard](#smartdashboard)
 
 ## Description
 Networking on the robot is fun! Not only that, but it is important to feedback diagnostic information to the driver station to help drivers know the robot's state during a match and help programmers debug issues with the robot.
@@ -73,4 +74,21 @@ All the "Put" methods require the key (name) of the value to get, and the value 
 sd->PutNumber("my_number", 4.2);
 sd->PutBoolean("my_bool", true);
 sd->PutString("my_string", "Hi!");
+{% endhighlight %}
+
+### SmartDashboard
+Instead of using the low-level NetworkTables API, you can use the [SmartDashboard](https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_smart_dashboard.html) class, which provides a simpler API for reading and writing data to the SmartDashboard table.
+
+{% highlight cpp %}
+#include <frc/smartdashboard/SmartDashboard.h>
+
+// Writing data
+frc::SmartDashboard::PutNumber("my_number", 4.2);
+frc::SmartDashboard::PutBoolean("my_bool", true);
+frc::SmartDashboard::PutString("my_string", "Hi!");
+
+// Reading data
+double double_value = frc::SmartDashboard::GetNumber("my_number", 0.0);
+bool bool_value = frc::SmartDashboard::GetBoolean("my_bool", false);
+std::string str_value = frc::SmartDashboard::GetString("my_string", "");
 {% endhighlight %}

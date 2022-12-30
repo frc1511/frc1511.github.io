@@ -6,12 +6,12 @@ nav_order: 2
 
 # Important Stuff
 * [Official Documentation](#official-documentation)
-* [Miscellaneous](#miscellaneous)
+* [Programming Tools](#programming-tools)
 
 ## Official Documentation
-Utilizing the official documentation for the vendor libraries is an essential skill for programmers on the team. Having an understanding of the functionality provided by each library can make finding solutions to problems easier and can help you write more efficient code.
+An essential skill for any programmer is the ability to read documentation. Each vendor provides documentation for their libraries. Having an understanding of the functionality provided by each library can make finding solutions to problems easier and can help you write more efficient code.
 * [FRC Control System Documentation](http://docs.wpilib.org/)
-  - Documentation for the FRC Control System and comprehensive examples for most things.
+  - Documentation for the FRC Control System and comprehensive examples for most general tasks.
 * [WPILib C++ API](https://github.wpilib.org/allwpilib/docs/release/cpp/index.html)
   - WPILib API Reference.
 * [CTRE Phoenix Documentation](https://docs.ctre-phoenix.com/en/latest/index.html)
@@ -23,9 +23,5 @@ Utilizing the official documentation for the vendor libraries is an essential sk
 * [REVLib C++ Documentation](https://codedocs.revrobotics.com/cpp/index.html)
   - REVLib API Reference.
 
-## Miscellaneous
-
-Some useful things to remember:
-* Camera Server Port is 1181 ([link](http://roborio-1511-frc.local:1181/stream.mjpg))
-* Limelight Port is 5801 (for configuration), 5800 (for stream)
-* Color sensor proximity reading ranges from 0-2048, the higher the value the closer the surface. A reading of ~300 or greater is enough for a reliable color read 
+## Programming Tools
+A number of tools are required to develop code for our robots. See the [Programming Tools](/programming_tools) page for more information.

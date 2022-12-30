@@ -18,7 +18,7 @@ Mechanisms are a way that we organize our code on team 1511. Other teams may use
 
 ## Mechanism Class
 
-The `Mechanism` base class is a class that all robot mechanism classes [inherit](/cpp_stuff/classes/#class-inheritance) from, such as `Drive`, `Controls`, and `Intake`. This class provides a number of functions to override:
+The `Mechanism` base class is a class that all robot mechanism classes [inherit](/cpp_docs/classes/#class-inheritance) from, such as `Drive`, `Controls`, and `Intake`. This class provides a number of functions to override:
 
 1. `process()`
   - This function is meant to be called every 20ms when the mechanism is supposed to be running. For example, the `Drive` mechanism's `process()` function should be called during teleop and autonomous, but not during disabled.
@@ -33,7 +33,7 @@ Typically, whenever programming a mechanism on the robot, we will create a new c
 
 ## Mechanism State
 
-The state of the mechanism is usually stored in a private [Enum](/cpp_stuff/enums/) variable. For example, the `Drive` mechanism might have a `DriveMode` enumeration that stores whether it is stopped, under manual control, or is running a trajectory.
+The state of the mechanism is usually stored in a private [Enum](/cpp_docs/enums/) variable. For example, the `Drive` mechanism might have a `DriveMode` enumeration that stores whether it is stopped, under manual control, or is running a trajectory.
 
 ## Controller Functions
 

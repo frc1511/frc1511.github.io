@@ -7,7 +7,7 @@ parent: Robot Programming
 
 # Timed Robot
 
-We use the `frc::TimedRobot` class as the base for our robot programs. Every robot program has a class (Typically named `Robot`) that [inherits](/cpp_stuff/classes/#class-inheritance) from `frc::TimedRobot`. This class is where we write code to delegate tasks to the [Mechanism classes](/robot_programming/mechanisms/) depending on the current state of the robot.
+We use the `frc::TimedRobot` class as the base for our robot programs. Every robot program has a class (Typically named `Robot`) that [inherits](/cpp_docs/classes/#class-inheritance) from `frc::TimedRobot`. This class is where we write code to delegate tasks to the [Mechanism classes](/robot_programming/mechanisms/) depending on the current state of the robot.
 
 This class provides a number of functions to override, which are called at different times during the match. The functions we use are:
 
