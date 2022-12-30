@@ -20,6 +20,10 @@ parent: 1511 Software
   - [ThunderImageCapture](#thunderimagecapture)
     * [Description](#description-2)
     * [Usage](#usage-1)
+* [How it Works](#how-rollingraspberry-works)
+  * [AprilTag Detection](#apriltag-detection)
+  * [Camera Calibration](#camera-calibration)
+  * [Pose Estimation and Ambiguity Problems](#pose-estimation-and-ambiguity-problems)
 
 ## Description
 RollingRaspberry is a program for Raspberry Pi co-processors on robots that's main purpose is to handle Vision Processing with AprilTags.
@@ -74,7 +78,7 @@ The configuration files are as follows:
 * [field_layouts.json](https://github.com/frc1511/RollingRaspberry/blob/main/config/field_layouts.json)
   - Contains a list of AprilTag field layouts. These field layouts can be referenced in the `vision_settings.json` file when declaring which field layout to use.
 * [vision_settings.json](https://github.com/frc1511/RollingRaspberry/blob/main/config/vision_settings.json)
-  - Contains the vision settings for Rolling Raspberry to use.
+  - Contains the vision settings for RollingRaspberry to use.
     * `"apriltag_family"` - The AprilTag family to use. For the 2023 season, this should be set to `"tag16h5"`.
     * `"apriltag_size"` - The size of the AprilTag in meters. For the 2023 season, the AprilTags are 6 inches, so this should be set to `0.1524`.
     * `"field_layout"` - The AprilTag field layout to use. This is referencing a field layout defined in the `field_layouts.json` file.
@@ -123,7 +127,7 @@ RollingRaspberry also includes a few additional tools for setup and configuratio
 * [Usage](#usage)
 
 ### Description
-By utilizing a number of images of a chessboard pattern taken by the camera, Thunder Camera Calibrator can calculate the camera's intrinsic matrix and distortion coefficients. These values can then be used by the Rolling Raspberry service to undistort frames from the camera and calculate accurate distances to vision targets.
+By utilizing a number of images of a chessboard pattern taken by the camera, ThunderCameraCalibrator can calculate the camera's intrinsic matrix and distortion coefficients. These values can then be used by the RollingRaspberry service to undistort frames from the camera and calculate accurate distances to vision targets.
 
 <img src="/assets/images/rollingraspberry/calibration.png" alt="ThunderCameraCalibrator" width="800"/>
 
@@ -147,7 +151,7 @@ When the program is finished, it will output the camera's intrinsic matrix and d
 * [Usage](#usage-1)
 
 ### Description
-Thunder Image Capture is a simple program that can be used to quickly capture images from a camera and save them to a directory.
+ThunderImageCapture is a simple program that can be used to quickly capture images from a camera and save them to a directory.
 
 ### Usage
 The program is written in Python 3 and utilizes OpenCV.
@@ -162,3 +166,37 @@ The first argument is the video index. This is the number that is used to identi
 The second argument is the path to the directory where the images will be saved.
 
 When the program is running, press the 's' key to capture an image. Images will be saved as #.jpg, where # is the number of images that have been captured. Note that images will be overwritten without warning if they already exist in the specified directory. Press the 'q' key to quit the program.
+
+## How RollingRaspberry Works
+
+* [AprilTag Detection](#apriltag-detection)
+* [Camera Calibration](#camera-calibration)
+* [Pose Estimation and Ambiguity Problems](#pose-estimation-and-ambiguity-problems)
+
+### AprilTag Detection
+For each camera, RollingRaspberry creates a new thread, called a [Vision Module](https://github.com/frc1511/RollingRaspberry/blob/main/src/include/RollingRaspberry/vision/vision_module.h) to handle the grabbing frames from the camera and running the AprilTag detector. To detect AprilTags in a given frame, use either the AprilTag library's [apriltag_detector_detect()](https://github.com/AprilRobotics/apriltag/blob/master/apriltag.h#L262) function, or WPILib's [AprilTagDetector::Detect()](https://github.com/wpilibsuite/allwpilib/blob/main/apriltag/src/main/native/include/frc/apriltag/AprilTagDetector.h#L236) function. These functions output the image coordinates of the AprilTag's corners and the ID of the detected tag, along with some other information about the detection. However, most of the detections outputted by this function are false positives, so it is important to filter out the bad detections with the detection's [Decision Margin](https://github.com/AprilRobotics/apriltag/blob/master/apriltag.h#L217). This value is a measure of how confident the detector is about the detection. From initial testing, the best detections result in a decision margin over 100.
+
+### Camera Calibration
+It is essential to know the intrinsic properties of the camera in order to properly undistort the image and calculate the pose of AprilTags. ThunderCameraCalibrator calculates the camera's 3x3 intrinsic matrix, which is defined as:
+
+$$ camera\:matrix\:\:=\:\:\begin{pmatrix}fx&0&cx\\ 0&fy&cy\\ 0&0&1\end{pmatrix} $$
+
+where $$fx$$ and $$fy$$ are the x and y focal lengths of the camera, and $$cx$$ and $$cy$$ are the x and y coordinates of its principal point. Both of these values are measured in pixels, so they are relative to the resolution of the calibration images. If the vision processing is being run at a different resolution than the calibration images, the camera matrix will have to be [adjusted](https://github.com/frc1511/RollingRaspberry/blob/main/src/lib/vision/camera_model.cpp#L3) accordingly.
+
+### Pose Estimation and Ambiguity Problems
+
+<img align="right" src="/assets/images/rollingraspberry/ambiguity_1.png" alt="Pose Ambiguity" width="200"/>
+
+Using the properties of the camera and the image coordinates of the AprilTag corners, it is possible to calculate the pose of the AprilTag relative to the camera. However, this process is inherently ambiguous. Humans can use lighting or background cues to determine the orientation of objects in space; however, computers can't and may be fooled by similar-looking targets, as shown in the image to the right.
+
+To get the two possible poses of the AprilTag relative to the camera, use either the AprilTag library's [estimate_tag_pose_orthogonal_iteration()](https://github.com/AprilRobotics/apriltag/blob/master/apriltag_pose.h#L55) function, or WPILib's [AprilTagPoseEstimator::EstimateOrthogonalIteration()](https://github.com/wpilibsuite/allwpilib/blob/main/apriltag/src/main/native/include/frc/apriltag/AprilTagPoseEstimator.h#L103) function.
+
+For some detections, ambiguity can be dismissed if the ratio of the pose reprojection errors is less than 0.2. However, ratios above 0.2 are likely to be ambiguous. In this case, there are a few things that can be done to help distinguish which pose is correct,
+1. Calculate the robot's pose based on both the estimated AprilTag poses. The incorrect pose can be spotted if:
+  - The calculated robot pose is above or below the ground (If there's a game with ramps/elevated platforms, change this to be above the platform).
+  - The calculated robot pose is very far away from its previous pose (> 1m) (remember that this is running ~50 times per second, so the robot shouldn't be moving that much from one frame to the next).
+2. If the poses are very close to each other, forget about 'em.
+
+If there are multiple other AprilTag detections with no ambiguity, then it might be a good idea just to forget about the ambiguous ones. Incorrect poses can be detremental to the overall accuracy of the robot's pose.
+
+Finally, once the ambiguity has been resolved, the robot's pose can be calculated by adding the transform from the AprilTag to the camera to the AprilTag's known pose, then adding the transform from the camera to the robot's center. Discard any outliers, because those were likely false detections. Finally, input all the estimated poses into a Kalman filter and use the filter's output as the robot's pose. It can also help to input odometry data from the drivetrain into the Kalman filter to improve the result.
