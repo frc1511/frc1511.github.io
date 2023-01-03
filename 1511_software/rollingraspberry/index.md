@@ -26,7 +26,7 @@ parent: 1511 Software
   * [Pose Estimation and Ambiguity Problems](#pose-estimation-and-ambiguity-problems)
 
 ## Description
-RollingRaspberry is a program for Raspberry Pi co-processors on robots that's main purpose is to handle Vision Processing with AprilTags.
+RollingRaspberry is a program for Raspberry Pi co-processors on robots. It's main purpose is to handle Vision Processing with AprilTags.
 
 RollingRaspberry's code is hosted on GitHub [here](https://github.com/frc1511/RollingRaspberry).
 
@@ -103,6 +103,8 @@ The configuration files are as follows:
           - `"yaw"` - The counterclockwise rotation angle around the Z axis.
 
           The rotations are applied in the order roll, pitch, yaw.
+
+          The starting rotation (0, 0, 0) is with the lens facing up.
 
 ## Monitoring
 To monitor the output of the RollingRaspberry systemd service, use `journalctl` to view the logs.
