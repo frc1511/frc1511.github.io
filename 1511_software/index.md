@@ -18,6 +18,8 @@ has_toc: false
 
 ### Competition Robots
 
+* 2023 - Homer 3.0
+  - [Github](https://github.com/frc1511/thunderbot2023)
 * 2022 - Homer 2.0 (aka "Turbulence")
   - [Github](https://github.com/frc1511/thunderbot2022)
 * 2020 & 2021 - Darth Thunderous The Wise
