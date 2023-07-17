@@ -36,10 +36,11 @@ $thunder-string: lighten($thunder-bg-alt, 60%);
 .highlight .err { color: $thunder-error; background-color: $thunder-bg-alt } /* Error */
 .highlight .k { color: $thunder-keyword } /* Keyword */
 .highlight .cm { color: $thunder-comment; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: $thunder-comment } /* Comment.Preproc */
+.highlight .cp { color: $thunder-string } /* Comment.Preproc */
 .highlight .c1 { color: $thunder-comment; font-style: italic } /* Comment.Single */
 .highlight .cs { color: $thunder-comment; font-style: italic } /* Comment.Special */
 .highlight .o { color: $thunder-operator } /* Operator */
+.highlight .p { color: $thunder-string }
 .highlight .kt { color: $thunder-keyword-type } /* Keyword.Type */
 .highlight .m { color: $thunder-number } /* Literal.Number */
 .highlight .s { color: $thunder-string } /* Literal.String */

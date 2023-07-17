@@ -7,6 +7,9 @@ parent: 1511 Software
 
 # ThunderAuto
 
+{: .important }
+Some of this information may be outdated. I may update soon but we'll see.
+
 * [Description](#description)
 * [Usage](#usage)
 * [Robot Code](#robot-code)
