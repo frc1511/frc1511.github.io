@@ -16,6 +16,7 @@ social:
     - https://www.youtube.com/user/PenfieldRobotics
 
 remote_theme: just-the-docs/just-the-docs
+
 color_scheme: thunder
 
 search_enabled: true
@@ -26,7 +27,7 @@ highlighter: rouge
 
 footer_content: "Rolling Thunder Programming Subteam - The Greatest Subteam on 1511"
 
-callouts_level: quiet # or loud
+callouts_level: loud # or quiet
 callouts_opacity: 0.15
 callouts:
   highlight:
@@ -43,6 +44,9 @@ callouts:
   warning:
     title: Warning
     color: red
+  joke:
+    title: Joke
+    color: orange
 
 search:
   heading_level: 2
