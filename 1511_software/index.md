@@ -18,7 +18,7 @@ has_toc: false
 
 ### Competition Robots
 
-* 2023 - Homer 3.0
+* 2023 - Homer 3.0 (aka "ThunderVolt")
   - [Github](https://github.com/frc1511/thunderbot2023)
 * 2022 - Homer 2.0 (aka "Turbulence")
   - [Github](https://github.com/frc1511/thunderbot2022)
@@ -49,7 +49,7 @@ has_toc: false
   - [Robot Code Download](https://penfieldrobotics.com/Files/Resources/robotcode/thunderbot2012.zip)
 * 2011 - Thunderous Prime
   - [Robot Code Download](https://penfieldrobotics.com/Files/Resources/robotcode/thunderbot2011.zip)
-* 2010 - Thunder Foot
+* 2010 - ThunderFoot
   - [Robot Code Download](https://penfieldrobotics.com/Files/Resources/robotcode/thunderbot2010.zip)
 * 2009 - Thunder Plucker
   - [Robot Code Download](https://penfieldrobotics.com/Files/Resources/robotcode/FRC2009.zip)
@@ -64,10 +64,11 @@ has_toc: false
 
 ### Offseason Robots
 
-* Homer
-  - [Github](https://github.com/frc1511/Homer)
 * Bizarro Homer (T-Shirt Shooter)
+  - [User Manual](/1511_software/bizarro_homer/)
   - [Github](https://github.com/frc1511/BizarroHomer)
+* Homer (Disassembled)
+  - [Github](https://github.com/frc1511/Homer)
 
 ## Desktop Tools
 * [ThunderAuto](/1511_software/thunderauto)
