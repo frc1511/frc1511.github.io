@@ -314,12 +314,16 @@ On install ([Section 8.1.4](#814-build-and-install-program)), the service will b
 Mechanism Class
 {: .label .label-purple }
 
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Control/Controls.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Control/Controls.cpp" target="_blank">Source</a>
+
 The `Controls` class reads controller inputs using the `DualShock4` class ([Section 6.1.8](#618-dualshock4-class)) and delegates commands to the other mechanism classes.
 
 ### 6.1.3: Drive Class
 {: .d-inline-block }
 Mechanism Class
 {: .label .label-purple }
+
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Drive/Drive.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Drive/Drive.cpp" target="_blank">Source</a>
 
 The `Drive` class handles drivetrain control.
 
@@ -346,12 +350,16 @@ The left output is then inverted for both control modes.
 Mechanism Class
 {: .label .label-purple }
 
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Shooter/Shooter.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Shooter/Shooter.cpp" target="_blank">Source</a>
+
 The `Shooter` class handles the entire shooter mechanism on a high-level. The class controls the `AirTank` ([Section 6.1.5](#615-airtank-class)), `ShooterPivot` ([Section 6.1.6](#616-shooterpivot-class)), and `ShooterBarrel` ([Section 6.1.7](#617-shooterbarrel-class)) classes, which control the individual components of the shooter mechanism.
 
 ### 6.1.5: AirTank Class
 {: .d-inline-block }
 Mechanism Class
 {: .label .label-purple }
+
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Shooter/AirTank.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Shooter/AirTank.cpp" target="_blank">Source</a>
 
 The `AirTank` class controls the fill and shoot valves on the robot.
 
@@ -373,6 +381,8 @@ When switching between `PRESSURIZING` and `SHOOTING` (either way), there is a 50
 {: .d-inline-block }
 Mechanism Class
 {: .label .label-purple }
+
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Shooter/ShooterPivot.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Shooter/ShooterPivot.cpp" target="_blank">Source</a>
 
 The `ShooterPivot` class controls the left and right pivot Falcon 500 motors.
 
@@ -396,6 +406,8 @@ The `set_preset` function instructs the shooter to pivot to a preset pivot angle
 Mechanism Class
 {: .label .label-purple }
 
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Shooter/ShooterBarrel.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Shooter/ShooterBarrel.cpp" target="_blank">Source</a>
+
 The `ShooterBarrel` class controls the rotation of the shooter barrel, controlled by a Falcon 500 motor and measured using a REV ThroughBore encoder.
 
 {% highlight cpp %}
@@ -416,6 +428,8 @@ A simple P control loop calculates the rotational speed of the barrel based on t
 {: .d-inline-block }
 Hardware Driver Class
 {: .label .label-blue }
+
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Control/GameController/DualShock4.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Control/GameController/DualShock4.cpp" target="_blank">Source</a>
 
 The `DualShock4` class reads inputs using the SDL2 library, and utilizes sysfs to set the controller’s LED color and read its battery level.
 
@@ -453,6 +467,14 @@ These directories each contain a file named `brightness`, which contains the 0-2
 {: .d-inline-block }
 Hardware Driver Class
 {: .label .label-blue }
+
+<dl>
+  <dt>DigitalInput</dt>
+  <dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Hardware/DigitalInput.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Hardware/DigitalInput.cpp" target="_blank">Source</a></dd>
+  <dt>DigitalOutput</dt>
+  <dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Hardware/DigitalOutput.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Hardware/DigitalOutput.cpp" target="_blank">Source</a></dd>
+</dl>
+
 
 The `thunder::DigitalInput` and `thunder::DigitalOutput` drivers are grouped together here because they are both a straightforward use of sysfs to control the GPIO pins on the Raspberry Pi.
 
@@ -492,6 +514,8 @@ In the construction of the `thunder::DigitalOutput` class, an optional `default_
 {: .d-inline-block }
 Hardware Driver Class
 {: .label .label-blue }
+
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Hardware/ThroughBore.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Hardware/ThroughBore.cpp" target="_blank">Source</a>
 
 The driver for the REV ThroughBore encoder is straightforward since the encoder is wired to the Raspberry Pi using its white ABS wire. The absolute output is sent over the ABS wire through PWM. Another option for reading the encoder's position is through its blue ENC A and yellow ENC B wires as a 'Quadrature' encoder. This approach may be more precise, although it is relative to the encoder’s startup position. We need the absolute output of the encoder, meaning the ABS wire was our only way to go. See the Datasheet [here](https://docs.revrobotics.com/through-bore-encoder/).
 
@@ -533,6 +557,15 @@ Since this is working in microseconds, there is bound to be noise in the input. 
 {: .d-inline-block }
 Hardware Driver Class
 {: .label .label-blue }
+
+<dl>
+  <dt>SparkMax</dt>
+  <dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Hardware/SparkMax.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Hardware/SparkMax.cpp" target="_blank">Source</a></dd>
+  <dt>PWMMotorController</dt>
+  <dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Hardware/PWMMotorController.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Hardware/PWMMotorController.cpp" target="_blank">Source</a></dd>
+  <dt>PWM</dt>
+  <dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Hardware/PWM.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Hardware/PWM.cpp" target="_blank">Source</a></dd>
+</dl>
 
 The PWM SparkMax driver is a simple PWM motor controller driver using sysfs.
 
@@ -605,6 +638,8 @@ Much of this control described above is split between the `thunder::PWMMotorCont
 Hardware Driver Class
 {: .label .label-blue }
 
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Hardware/PressureTransducer.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Hardware/PressureTransducer.cpp" target="_blank">Source</a>
+
 The `thunder::PressureTransducer` class controls the ADS1115 ADC (analog-to-digital converter). The pressure transducer used on this robot is analog, so the ADC board converts the signal to a digital for the Raspberry Pi to read.
 
 The ADS1115 ADC operates over I2C; therefore, it is the most complicated driver I had to write for this robot.
@@ -662,11 +697,26 @@ When reading the pressure from the sensor, the driver reads the value from the c
 Hardware Driver Class
 {: .label .label-blue }
 
+<a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/Hardware/LEDStrip.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/Hardware/LEDStrip.cpp" target="_blank">Source</a>
+
 The `thunder::LEDStrip` driver controls the the WS2812 LEDs on the robot over PWM. Since LEDs are notoriously difficult to control over PWM (they require incredibly precise timing), the driver uses the [rpi_ws281x](https://github.com/jgarff/rpi_ws281x) C library.
 
 TODO: Finish this section
 
 ### 6.1.14: Dashboard Server
+
+<dl>
+<dt>DashboardServer</dt>
+<dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/DashboardServer/DashboardServer.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/DashboardServer/DashboardServer.cpp" target="_blank">Source</a></dd>
+<dt>ConnectionManager</dt>
+<dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/DashboardServer/ConnectionManager.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/DashboardServer/ConnectionManager.cpp" target="_blank">Source</a></dd>
+<dt>HTTPRequest</dt>
+<dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/DashboardServer/HTTPRequest.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/DashboardServer/HTTPRequest.cpp" target="_blank">Source</a></dd>
+<dt>HTTPResponse</dt>
+<dd><a href="https://github.com/frc1511/BizarroHomer/blob/main/main/include/BizarroHomer/DashboardServer/HTTPResponse.hpp" target="_blank">Header</a> &nbsp; <a href="https://github.com/frc1511/BizarroHomer/blob/main/main/src/DashboardServer/HTTPResponse.cpp" target="_blank">Source</a></dd>
+</dl>
+
+
 The main control program runs a HTTP/1.1 server to host the Dashboard page. To learn about the Dashboard itself, see [Section 6.2](#62-dashboard).
 
 <br>
