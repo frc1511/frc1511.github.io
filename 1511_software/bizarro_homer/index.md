@@ -179,6 +179,9 @@ The pivot of the shooter is controlled by the DPad. The UP and DOWN DPad buttons
 The LEDs on the DualShock4 controller ([Section 2.4](#24-controller-led-status-patterns)) and the LEDs on the robot ([Section 2.5](#25-robot-leds)) may indicate the pressure/shooting status of the robot.
 
 ## 2.4: Controller LED Status Patterns
+
+<img align="right" src="/assets/images/bizarro_homer/controller_lightbar.png" width=200px style="padding-left:10px;padding-bottom:10px">
+
 The LEDs on the DualShock4 controller signify different states and errors of the robot program.
 
 ### 2.4.1: Independent States
