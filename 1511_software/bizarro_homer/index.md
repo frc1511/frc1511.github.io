@@ -307,7 +307,7 @@ If the service crashes, it will automatically restart with a 0-second delay.
 
 The service directs `stdout` and `stderr` to respective files in the dashboard server directory. These logs are hosted on the dashboard page ([Section 6.2](#62-dashboard)) for debugging purposes.
 
-On install (TODO Section: Link install here), the service will be installed and enabled, meaning that it will automatically start on boot.
+On install ([Section 8.1.4](#814-build-and-install-program)), the service will be installed and enabled, meaning that it will automatically start on boot.
 
 ### 6.1.2: Controls Class
 {: .d-inline-block }
@@ -678,7 +678,7 @@ In a web browser, go to the IP address of the Raspberry Pi,
 http://<Raspberry_Pi_IP_Address>/
 {% endhighlight %}
 
-Or, using mDNS (Section TODO), use the hostname followed by the “.local” domain to resolve the IP address. By default (see section 5.3 TODO), this should be
+Or, using mDNS ([Section 8.2](#82-using-mdns-to-resolve-ip-address)), use the hostname followed by the “.local” domain to resolve the IP address. By default ([Section 7.6](#76-raspberry-pi)), the hostname should be 'bizarrohomer',
 
 [http://bizarrohomer.local/](http://bizarrohomer.local/)
 
@@ -1080,12 +1080,19 @@ The CAN chain runs in the following order:
 The CANable 2.0 USB-CAN adapter is plugged into one of the USB ports on the Raspberry Pi. This facilitates CAN Bus communication on the Raspberry Pi, and serves as the beginning of the CAN chain.
 
 ### 7.5.2: Solenoid Valves
+<img align="right" src="/assets/images/bizarro_homer/solenoid_valves.jpeg" width=150px style="padding-left:10px">
+
 The two solenoid valves on the robot are 12V; however, the GPIO pins on the Raspberry Pi can only output 3.3V. To get around this, we use two VEX Spike H-Bridge Relay Modules to relay the 3.3V signal of the Raspberry Pi to a 12V signal for the solenoid.
+
+<img align="right" src="/assets/images/bizarro_homer/spike_relay.jpeg" width=150px style="padding-left:10px">
 
 * [VEX Spike H-Bridge Relay](https://docs.wpilib.org/en/stable/docs/controls-overviews/control-system-hardware.html#spike-h-bridge-relay)
 * [GRANZOW W6D49-000 Solenoid Valve](https://www.granzow.com/valves/solenoid/W6D49-000)
 
 ### 7.5.3: Drivetrain
+
+<img align="right" src="/assets/images/bizarro_homer/sparkmax_wiring.png" width=125px style="padding-left:10px">
+
 The drivetrain is powered by 4 Neo motors (two on each side), each controlled by a SparkMax motor controller. Since the two motors on each side are geared together, the signal PWM wires for both their SparkMaxes are soldered together to control them as one. The resulting two PWM signal wires get plugged into the PWM0 and PWM1 Raspberry Pi pins.
 
 * [REV Neo Motor](https://www.revrobotics.com/rev-21-1650/)
@@ -1140,7 +1147,7 @@ The robot uses three CTRE Falcon 500 motors and one CTRE Power Distribution Pane
 
 ### 7.7.1: Falcon 500 FRC Locked
 
-<img align="right" src="/assets/images/bizarro_homer/phoenix_tuner_frc_locked.png" width="150" style="padding-left:10px padding-bottom:10px">
+<img align="right" src="/assets/images/bizarro_homer/phoenix_tuner_frc_locked.png" width="150" style="padding-left:10px; padding-bottom:10px">
 
 If a Falcon 500 was previously used with a roboRIO (at any time ever), then a _(really annoying)_ property called 'FRC Locked' will be set to `1`. This prevents the device from being controlled by anything except a roboRIO.
 
@@ -1325,6 +1332,47 @@ Obviously, you could use a hotspot, although there is a workaround to use the sc
       - If the checkbox is already checked, uncheck it and check it again. It never seems to work if you don’t do this.
 
 ### 8.6: Pairing a New DualShock4 Controller
+Pairing a new controller is a bit involved and hopefully not necessary. If a paired controller does not connect, check it has a charged battery.
 
+As a reminder, only attempt to use DualShock4 controllers with this robot. Other controllers may have different button/joystick interfaces. Using another kind of controller could result in rearranged buttons or unexpected inputs. Be cautious, and do not blame Peter’s code if something stops working.
 
+Here are the instructions for pairing a controller…
 
+<br>
+
+First, remote into the Raspberry Pi ([Section 8.3](#83-remoting-into-the-raspberry-pi)).
+
+Put the DualShock4 controller into pairing mode by holding down the Share Button and the PlayStation Button until the LEDs start flashing white.
+
+Next, startup `bluetoothctl`.
+
+{% highlight bash %}
+$ bluetoothctl
+{% endhighlight %}
+
+Turn on bluetooth and scan for devices.
+
+{% highlight text %}
+[bluetooth]# power on
+[bluetooth]# agent off
+[bluetooth]# agent NoInputNoOutput
+[bluetooth]# default-agent
+[bluetooth]# scan on
+{% endhighlight %}
+
+The Raspberry Pi should start listing detected devices in the vicinity.
+
+When the “Wireless Controller” appears in the scan, pair to it using its Bluetooth address.
+
+{% highlight text %}
+[bluetooth]# pair XX:XX:XX:XX:XX:XX
+[bluetooth]# trust XX:XX:XX:XX:XX:XX
+{% endhighlight %}
+
+Now the controller should automatically connect to the Raspberry Pi when it turns on.
+
+To list all paired devices,
+
+{% highlight text %}
+[bluetooth]# paired-devices
+{% endhighlight %}
