@@ -7,76 +7,105 @@ parent: 1511 Software
 
 # ThunderAuto
 
-{: .important }
-Some of this information may be outdated. I may update soon but we'll see.
-
 * [Description](#description)
-* [Usage](#usage)
-* [Robot Code](#robot-code)
-    * [Movement](#movement)
-    * [Actions](#actions)
+* [Creating a Project](#creating-a-project)
+* [The Editor](#the-editor)
+    * [Path Editor Page](#path-editor-page)
+    * [Path Manager Page](#path-manager-page)
+    * [Properties Page](#properties-page)
+    * [Actions Page](#actions-page)
 * [Installation](#installation)
-* [Building](#building)
 
 ## Description
-ThunderAuto is a custom tool for planning autonomous paths for FRC robots.
+ThunderAuto is a custom tool for creating pahts for FRC robots.
 
 ThunderAuto's code is hosted on GitHub [here](https://github.com/frc1511/ThunderAuto).
 
-## Usage
-When starting the program, the user has the option to either create a new project or open a previously saved one. If the user chooses to create a new project, they can customize various settings, including the maximum velocity and acceleration, the dimensions of the robot, and the field image.
+Supported on Windows and macOS.
 
-<img src="/assets/images/thunderauto/screenshot_2.png" alt="ThunderAuto New Project Window" width="500">
+<img src="/assets/images/thunderauto/main.png" alt="ThunderAuto Path Editor" width="800">
 
-Upon creating a new project, the user is presented with multiple windows including the Path Selector, Path Editor, and Properties Editor.
+## Creating a Project
 
-<img src="/assets/images/thunderauto/screenshot_1.png" alt="ThunderAuto Path Editor" width="800">
+Select the "New Project" button on the Welcome popup, or press Ctrl+N.
 
-The Path Selector window provides the tools for selecting, creating, deleting, and renaming paths. The Path Editor displays the current path as a Bézier curve on the field image, with a gradient representing the robot's velocity (blue for slow, red/pink for fast). The user can add or remove waypoints and adjust their attributes, such as the robot's desired position, rotation, and heading, either directly in the Path Editor or by selecting a waypoint in the Path Editor and using the Properties Page's 'Point' dropdown.
+You need to specify a few settings to create a project:
 
-In the Properties Page, the user can also flag a waypoint for the robot to stop at by checking the 'Stop' checkbox. This causes the app to calculate the robot's deceleration to a complete stop at the selected point and its subsequent acceleration as it continues the trajectory. When a waypoint is marked as stopped, the Path Editor separates the heading handles, allowing the robot to resume the path at a different angle from when it reached the point.
+<dl>
+  <dt>Path</dt>
+  <dd>The location to save the <b>.thunderauto</b> project and all of the exported <b>.csv</b> files.</dd>
+  <dt>Field</dt>
+  <dd>Which field to use. I will update the app with every year's game field, although choosing <b>Custom</b> will open a popup to select a custom field image.</dd>
+  <dt>Controller Type</dt>
+  <dd>What kind of drivetrain the robot uses. Only Holonomic (Swerve) drivebases are currently supported by ThunderAuto, with Ramsete drivebases soon? to come.</dd>
+  <dt>Robot Length</dt>
+  <dd>Length of the robot (meters).</dd>
+  <dt>Robot Width</dt>
+  <dd>Width of the robot (meters).</dd>
+</dl>
 
-ThunderAuto also has a feature called Actions, which allows the user to specify specific actions for the robot to perform at certain points along the trajectory. The Properties Page's dropdown menu provides tools for creating, deleting, and renaming Actions, and for selecting which Actions should be applied to each waypoint.
+<img src="/assets/images/thunderauto/new_project.png" alt="ThunderAuto New Project Window" width="300" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 
-When the user is satisfied with the path they have created, they can use the Properties Page's 'Export' button (under the 'Curve' dropdown) to save the path as a CSV file in the project's directory. The CSV file contains a list of timestamps corresponding to the robot's desired position, rotation, velocity, and actions.
+## The Editor
 
-## Robot Code
-The code needed to run a ThunderAuto trajectory on the robot does not need to be complex, as the app handles most of the motion calculations before the robot executes them.
+### Path Editor Page
 
-You can refer to Homer's code [here](https://github.com/petelilley/Homer) for a simple example of how to use ThunderAuto's exported CSV files to execute a trajectory.
+<img align="right" src="/assets/images/thunderauto/dragging.gif" alt="ThunderAuto Editor Dragging GIF" width="350">
 
-### Movement
-To begin, the exported CSV file should be placed in a location on the robot that is easy to access, such as the deploy directory. Before the trajectory can be run, the robot's program must [parse the CSV file](https://github.com/petelilley/Homer/blob/main/src/Main/Trajectory/Trajectory.cpp#L13) and create two maps that represent the path's States and Actions over time. When the trajectory is being executed, the robot needs to keep track of the elapsed time and then use this information to [sample](https://github.com/petelilley/Homer/blob/main/src/Main/Trajectory/Trajectory.cpp#L34) the current State from the map of States. Adding [linear interpolation](https://github.com/petelilley/Homer/blob/main/src/Main/Trajectory/Trajectory.cpp#L66) between States can help smooth out the trajectory. The WPILib [HolonomicDriveController](https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_holonomic_drive_controller.html) class can be used to calculate the optimal axis velocities for moving the robot based on the current State (as determined by odometry) and the desired State.
+The Path Editor page presents the current path on top of the field image. Points can be selected and dragged around to shape the desired path.
 
-### Actions
-To process Actions, the robot's program must have a [list of Actions](https://github.com/frc1511/Homer/blob/main/src/Main/Autonomous/Autonomous.h#L85) that matches the one used in the app. As the robot follows the path, the program should compare the set bits in the current action bit-field with the available actions. When a match is found, the program can execute any code related to that action. "Blocking" actions can be implemented by stopping the trajectory timer, but these should only be used at waypoints where the robot is supposed to stop.
+Pan around with __Shift+Left-Click__ or __Middle-Click__. Zoom with the scroll wheel.
+
+__Double-Click__ to create a point. Double-clicking the curve will insert the new point into it. Double-clicking anywhere else will add a point to whichever end is closer to the cursor.
+
+Use the __Delete__ or __Backspace__ keys to delete the selected point.
+
+A tooltip is shown when the cursor hovers over the curve.
+The tooltip includes the time, velocity, centripetal acceleration, and curvature at the hovered point.
+
+By default, the color of the curve represents the velocity of the robot (blue = slow, magenta = fast). This can be changed in the [Properties page](#properties-page).
+
+### Path Manager Page
+
+<img align="right" src="/assets/images/thunderauto/path_manager.png" alt="ThunderAuto Path Manager Page" width="200">
+
+The Path Manager page presents a list of all paths in the project.
+
+The selected path in this page is shown in the Path Editor and Properties pages.
+
+Rename a path by double-clicking its name.
+
+Delete a path by clicking the trash can icon.
+
+### Properties Page
+
+<img align="right" src="/assets/images/thunderauto/properties_page.png" alt="ThunderAuto Properties Page" width="200">
+The Properties page presents properties related to the currently selected point and general path properties.
+
+The __Point__ dropdown contains tools related to the selected point. Properties include the point's position, heading, heading weights, rotation, and whether to stop there.
+
+If the __Stop__ checkbox is checked the robot will decelerate to a stop at that point. When stopped, the point's incoming and outgoing headings may be different.
+
+There is also a dropdown named __Actions__ where actions from the [Actions Page](#actions-page) can be checked on/off for the point.
+
+The __Path__ dropdown contains tools related to the selected path.
+
+The __Export__ button will export the path to a CSV file in the project's directory. The CSV file is named using the path's name shown in the [Path Manager Page](#path-manager-page).
+
+The __Linear Accel__ and __Linear Velocity__ fields edit the robot's maximum allowable acceleration and velocity when traveling the path.
+
+The __Centripetal Accel__ field controls the maximum centripetal acceleration of the robot as it makes a turn.
+
+
+The following fields control what's displayed in the [Path Editor Page](#path-editor-page). The __Curve Overlay__ field controls the color of the curve. The __Show Tangents__, __Show Rotation__, and __Show Tooltip__ checkboxes control whether their respective items are rendered.
+
+### Actions Page
+
+<img align="right" src="/assets/images/thunderauto/actions_page.png" alt="ThunderAuto Actions Page" width="200">
+
+The Actions page presents the global list of actions. Actions can be assigned to points in the [Properties Page](#properties-page).
 
 ## Installation
-* [Executable Download](https://github.com/petelilley/ThunderAuto/releases/latest)
+* [Releases](https://github.com/petelilley/ThunderAuto/releases)
 
-Keep ThunderAuto up to date! Due to the fact that ThunderAuto is a custom tool, backwards compatibility is not guaranteed!
-
-## Building
-Supported operating systems are Windows and macOS. Make sure to resolve all the git submodules before building!
-{% highlight bash %}
-git submodule init
-git submodule update
-{% endhighlight %}
-
-Build projects can be generated using CMake. Tested targets include Visual Studio 2019 or 2022 on Windows and Xcode or Unix Makefiles on macOS. 
-#### Configure Windows
-{% highlight bash %}
-cmake . -B build -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release
-{% endhighlight %}
-
-#### Configure macOS
-{% highlight bash %}
-cmake . -B build -G "Xcode" -DCMAKE_BUILD_TYPE=Release
-{% endhighlight %}
-
-#### Build
-{% highlight bash %}
-cmake --build build
-{% endhighlight %}
-
-All the app's resources (Images, Fonts, etc.) are built into the executable, so there's no need to worry about moving them around once it's built.
+Keep ThunderAuto up to date! Backwards compatibility is not guaranteed!
