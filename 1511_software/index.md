@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 1511 Software
-nav_order: 8
+nav_order: 6
 has_children: true
 has_toc: false
 ---
@@ -12,15 +12,18 @@ has_toc: false
   * [Competition Robots](#competition-robots)
   * [Offseason Robots](#offseason-robots)
 * [Desktop Tools](#desktop-tools)
-* [Vision Processing Software](#vision-processing-software)
 
 ## Robot Control Software
 
 ### Competition Robots
 
-* 2023 - Homer 3.0 (aka "ThunderVolt")
+* 2025 - TBD
+  - [Github](https://github.com/frc1511/thunderbot2025)
+* 2024 - Cacophony
+  - [Github](https://github.com/frc1511/thunderbot2024)
+* 2023 - ThunderVolt
   - [Github](https://github.com/frc1511/thunderbot2023)
-* 2022 - Homer 2.0 (aka "Turbulence")
+* 2022 - Turbulence (aka "Homer 2.0")
   - [Github](https://github.com/frc1511/thunderbot2022)
 * 2020 & 2021 - Darth Thunderous The Wise
   - [2021 Updated Robot Code Download](https://penfieldrobotics.com/wp-content/uploads/2021/08/thunderbot2020-2021edition.zip)
@@ -64,7 +67,7 @@ has_toc: false
 
 ### Offseason Robots
 
-* Bizarro Homer (T-Shirt Shooter)
+* Bizarro Homer (T-Shirt Shooter, Version 1)
   - [User Manual](/1511_software/bizarro_homer/)
   - [Github](https://github.com/frc1511/BizarroHomer)
 * Homer (Disassembled)
@@ -72,7 +75,4 @@ has_toc: false
 
 ## Desktop Tools
 * [ThunderAuto](/1511_software/thunderauto)
-* [Homer's Dashboard](/1511_software/homers_dashboard)
 
-## Vision Processing Software
-* [RollingRaspberry](/1511_software/rollingraspberry)

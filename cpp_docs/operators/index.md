@@ -113,13 +113,12 @@ Bitwise operators are used to perform bitwise operations on variables and values
 * `>>` - Bitwise right shift
 
 {% highlight cpp %}
-int x = 5 & 3; // "x" is now 1 (5 in binary is 101, 3 in binary is 011, 101 & 011 is 001, which is 1 in decimal)
-int y = 5 | 2; // "y" is now 7 (5 in binary is 101, 2 in binary is 010, 101 | 010 is 111, which is 7 in decimal)
-int z = 5 ^ 3; // "z" is now 6 (5 in binary is 101, 3 in binary is 011, 101 ^ 011 is 110, which is 6 in decimal)
-int a = ~5; // "a" is now -6 (5 in binary is 101, ~101 is 010, which is 2 in decimal, but 2 is a positive number, so -2 is 2's complement, which is -6)
-int b = 2 << 1; // "b" is now 4 (2 in binary is 10, so 2 << 1 is 100, which is 4 in decimal)
-int c = 2 >> 1; // "c" is now 1 (2 in binary is 10, so 2 >> 1 is 1, which is 1 in decimal)
-int d = 2 << 3; // "d" is now 16 (2 in binary is 10, so 2 << 3 is 10000, which is 16 in decimal)
+unsigned char x = 0b101 & 0b011; // 0b001
+unsigned char y = 0b101 | 0b010; // 0b111
+unsigned char z = 0b101 ^ 0b011; // 0b110
+unsigned char a = ~0b101; // 0b11111010
+unsigned char b = 0b010 << 1; // 0b100
+unsigned char c = 0b010 >> 1; // 0b001
 {% endhighlight %}
 
 ## Assignment Operators

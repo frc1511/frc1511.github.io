@@ -1,11 +1,14 @@
 ---
 layout: page
 title: Bizarro Homer
-nav_order: 1
-parent: 1511 Software
+parent: None
 ---
 
-# Bizarro Homer User Manual
+# Bizarro Homer (T-Shirt Robot) User Manual
+
+{: .important }
+Most of this information is outdated. Major changes have been made to this robot, and the plan moving forward is to use a RoboRIO+DriverStation instead of the Raspberry Pi control system outlined here.
+Once development has progressed this page should be updated.
 
 ## Table of Contents
 

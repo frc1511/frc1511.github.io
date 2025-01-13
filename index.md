@@ -4,9 +4,9 @@ title: Home
 nav_order: 1
 ---
 
-# Programming :D
+# Programming
 
-This is the website for FRC Team 1511 Rolling Thunder's programming sub-team!
+This is the website containing all of FRC Team 1511's programming resources. Documentation, tutorials, etc.
 
 ## Quick Stuff
 ### Official Documentation

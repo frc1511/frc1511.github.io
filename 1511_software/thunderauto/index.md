@@ -1,7 +1,7 @@
 ---
 layout: page
 title: ThunderAuto
-nav_order: 2
+nav_order: 1
 parent: 1511 Software
 ---
 
@@ -9,103 +9,150 @@ parent: 1511 Software
 
 * [Description](#description)
 * [Creating a Project](#creating-a-project)
-* [The Editor](#the-editor)
-    * [Path Editor Page](#path-editor-page)
-    * [Path Manager Page](#path-manager-page)
-    * [Properties Page](#properties-page)
-    * [Actions Page](#actions-page)
-* [Installation](#installation)
+* [Editing Paths](#editing-paths)
+    * [Navigating Editor](#navigating-the-editor)
+    * [Adding/Removing Points](#addingremoving-points)
+    * [Point Properties](#point-properties)
+    * [Linking Points](#linking-points)
+    * [Point Actions](#point-actions)
+    * [Reversing Paths](#reversing-paths)
+    * [Constraints](#constraints)
+* [Managing Paths](#managing-paths)
+* [Exporting Paths](#exporting-paths)
+    * [CSV Format](#csv-format)
+* [Building from Source](#building-from-source)
 
 ## Description
-ThunderAuto is a custom tool for creating pahts for FRC robots.
+ThunderAuto is a tool that allows FRC teams to create efficient trajectories for autonomous robots to follow. Trajectories created in ThunderAuto can be exported to CSV files which can be easily read from the robot program.
+
+ThunderAuto is available from the Windows Store, or can be built from source code (see instructions [here](#building-from-source)).
 
 ThunderAuto's code is hosted on GitHub [here](https://github.com/frc1511/ThunderAuto).
-
-Supported on Windows and macOS.
 
 <img src="/assets/images/thunderauto/main.png" alt="ThunderAuto Path Editor" width="800">
 
 ## Creating a Project
 
-Select the "New Project" button on the Welcome popup, or press Ctrl+N.
-
-You need to specify a few settings to create a project:
-
-<dl>
-  <dt>Path</dt>
-  <dd>The location to save the <b>.thunderauto</b> project and all of the exported <b>.csv</b> files.</dd>
-  <dt>Field</dt>
-  <dd>Which field to use. I will update the app with every year's game field, although choosing <b>Custom</b> will open a popup to select a custom field image.</dd>
-  <dt>Controller Type</dt>
-  <dd>What kind of drivetrain the robot uses. Only Holonomic (Swerve) drivebases are currently supported by ThunderAuto, with Ramsete drivebases soon? to come.</dd>
-  <dt>Robot Length</dt>
-  <dd>Length of the robot (meters).</dd>
-  <dt>Robot Width</dt>
-  <dd>Width of the robot (meters).</dd>
-</dl>
+Select the "New Project" button on the Welcome popup, or use the shortcut Ctrl+N.
 
 <img src="/assets/images/thunderauto/new_project.png" alt="ThunderAuto New Project Window" width="300" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 
-## The Editor
+<dl>
+  <dt>Path</dt>
+  <dd>The location to save the <b>.thunderauto</b> project and all of the exported <b>.csv</b> files. Somewhere in the <b>deploy</b> folder of the robot project is recommended.</dd>
+  <dt>Field</dt>
+  <dd>Which field to use. The application is updated with each year's game field every year. To import a custom field image, select <b>Custom</b> and choose an image file.</dd>
+  <dt>Controller Type</dt>
+  <dd>The type of drivetrain the robot has. Only Holonomic (Swerve) drivebases are currently supported. Ramsete drivebases coming soon.</dd>
+  <dt>Robot Length</dt>
+  <dd>Length of the robot with bumpers (meters).</dd>
+  <dt>Robot Width</dt>
+  <dd>Width of the robot with bumpers (meters).</dd>
+</dl>
 
-### Path Editor Page
+## Editing Paths
 
-<img align="right" src="/assets/images/thunderauto/dragging.gif" alt="ThunderAuto Editor Dragging GIF" width="350">
-
-The Path Editor page presents the current path on top of the field image. Points can be selected and dragged around to shape the desired path.
+### Navigating The Editor
 
 Pan around with __Shift+Left-Click__ or __Middle-Click__. Zoom with the scroll wheel.
 
-__Double-Click__ to create a point. Double-clicking the curve will insert the new point into it. Double-clicking anywhere else will add a point to whichever end is closer to the cursor.
+### Adding/Removing Points
 
-Use the __Delete__ or __Backspace__ keys to delete the selected point.
+Ways to add waypoints:
+* Right-click anywhere in the editor to open a context menu:
+    - You may add a point to the start/end of the path, or before/after the currently selected point.
+* Double-click the curve to add in a point, or double-click anywhere else to add a point to the closest end of the path.
 
-A tooltip is shown when the cursor hovers over the curve.
-The tooltip includes the time, velocity, centripetal acceleration, and curvature at the hovered point.
+Ways to remove waypoints:
+* Select a point and press the __Delete__ or __Backspace__ key.
+* Right-click a point and select __Delete__ from the context menu.
 
-By default, the color of the curve represents the velocity of the robot (blue = slow, magenta = fast). This can be changed in the [Properties page](#properties-page).
+<img src="/assets/images/thunderauto/new_point.png" alt="ThunderAuto Editor New Point" width="350">
 
-### Path Manager Page
+### Point Properties
+
+<img align="right" src="/assets/images/thunderauto/dragging.gif" alt="ThunderAuto Editor Dragging GIF" width="350">
+
+Points can be selected and dragged around in the editor page.
+
+Point properties such as position, rotation, and heading can be manually edited in the Properties page.
+
+If the __Stop__ checkbox is checked, the robot will decelerate to a stop at that waypoint. When stopped, the point's incoming and outgoing headings can differ.
+
+### Linking Points
+
+<img align="right" src="/assets/images/thunderauto/properties_page.png" alt="ThunderAuto Properties" width="200">
+
+The position of waypoints can be linked together in the properties page. Open the waypoint link popup by clicking the link icon next to a corresponding waypoint. In the popup, you can create a named link or select an existing link.
+
+Links are useful when creating sequential paths that share endpoints.
+
+### Point Actions
+
+Actions can be assigned to waypoints in the Properties page. Actions are simply flags that can be checked on/off for each waypoint. Actions can be used in the robot program to trigger certain behaviors.
+
+### Reversing Paths
+
+Reverse a path in the top menu bar, or by right-clicking a path in the path manager page.
+
+### Constraints
+
+Constrain the robot's maximum linear acceleration, linear velocity, and centripetal acceleration in the properties page.
+
+## Managing Paths
 
 <img align="right" src="/assets/images/thunderauto/path_manager.png" alt="ThunderAuto Path Manager Page" width="200">
+Paths can be created, renamed, duplicated, and deleted in the Path Manager page.
 
-The Path Manager page presents a list of all paths in the project.
+Double-click a path to rename it.
+Right-click a path to duplicate or delete it.
 
-The selected path in this page is shown in the Path Editor and Properties pages.
+## Exporting Paths
 
-Rename a path by double-clicking its name.
+Export individual paths in the Properties page, or export all paths with the menu bar button.
 
-Delete a path by clicking the trash can icon.
+### CSV Format
 
-### Properties Page
+Paths are exported to CSV files in the project's directory. Each CSV file shares the name of the path it corresponds to.
 
-<img align="right" src="/assets/images/thunderauto/properties_page.png" alt="ThunderAuto Properties Page" width="200">
-The Properties page presents properties related to the currently selected point and general path properties.
+The CSV file contains the following columns:
 
-The __Point__ dropdown contains tools related to the selected point. Properties include the point's position, heading, heading weights, rotation, and whether to stop there.
+1. Time (s)
+2. X Position (m)
+3. Y Position (m)
+4. Velocity (m/s)
+5. Rotation (rad)
+6. Action (bit field)
 
-If the __Stop__ checkbox is checked the robot will decelerate to a stop at that point. When stopped, the point's incoming and outgoing headings may be different.
+For reading the CSV from a robot program, see 1511's 2023 robot code [here](https://github.com/frc1511/thunderbot2023/blob/main/src/Trajectory/CSVTrajectory.cpp#L7).
 
-There is also a dropdown named __Actions__ where actions from the [Actions Page](#actions-page) can be checked on/off for the point.
+## Building from Source
 
-The __Path__ dropdown contains tools related to the selected path.
+ThunderAuto uses CMake to generate build files. To build ThunderAuto from source, follow these steps:
 
-The __Export__ button will export the path to a CSV file in the project's directory. The CSV file is named using the path's name shown in the [Path Manager Page](#path-manager-page).
+1. Clone the repository
+```bash
+git clone https://github.com/frc1511/ThunderAuto
+cd ThunderAuto
+```
 
-The __Linear Accel__ and __Linear Velocity__ fields edit the robot's maximum allowable acceleration and velocity when traveling the path.
+2. Update submodules
+```bash
+git submodule init
+git submodule update
+```
 
-The __Centripetal Accel__ field controls the maximum centripetal acceleration of the robot as it makes a turn.
+3. Configure the project
 
+    {: .note }
+    For Windows, ThunderAuto supports both DirectX11 and OpenGL backends. DirectX11 is the default, but you can switch to OpenGL by setting the `TH_OPENGL` CMake option to `ON`.
 
-The following fields control what's displayed in the [Path Editor Page](#path-editor-page). The __Curve Overlay__ field controls the color of the curve. The __Show Tangents__, __Show Rotation__, and __Show Tooltip__ checkboxes control whether their respective items are rendered.
+    ```bash
+    cmake . -B build
+    ```
 
-### Actions Page
+4. Build the project
+```bash
+cmake --build build
+```
 
-<img align="right" src="/assets/images/thunderauto/actions_page.png" alt="ThunderAuto Actions Page" width="200">
-
-The Actions page presents the global list of actions. Actions can be assigned to points in the [Properties Page](#properties-page).
-
-## Installation
-* [Releases](https://github.com/petelilley/ThunderAuto/releases)
-
-Keep ThunderAuto up to date! Backwards compatibility is not guaranteed!
