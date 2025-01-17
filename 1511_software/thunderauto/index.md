@@ -23,9 +23,11 @@ parent: 1511 Software
 * [Building from Source](#building-from-source)
 
 ## Description
-ThunderAuto is a tool that allows FRC teams to create efficient trajectories for autonomous robots to follow. Trajectories created in ThunderAuto can be exported to CSV files which can be easily read from the robot program.
+ThunderAuto is a tool used by FRC teams to create efficient trajectories for autonomous robots to follow. Trajectories created in ThunderAuto can be exported to CSV files which can be easily read from the robot program.
 
-ThunderAuto is available from the Windows Store, or can be built from source code (see instructions [here](#building-from-source)).
+<a href="https://apps.microsoft.com/detail/9n2hbs3wm7cm?mode=direct">
+    <img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200"/>
+</a>
 
 ThunderAuto's code is hosted on GitHub [here](https://github.com/frc1511/ThunderAuto).
 
@@ -55,6 +57,8 @@ Select the "New Project" button on the Welcome popup, or use the shortcut Ctrl+N
 ### Navigating The Editor
 
 Pan around with __Shift+Left-Click__ or __Middle-Click__. Zoom with the scroll wheel.
+
+To reset the view, use the shortcut __Ctrl+0__, or select __View -> Reset View__ from the top menu bar.
 
 ### Adding/Removing Points
 
