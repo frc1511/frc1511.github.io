@@ -1,0 +1,2059 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation site for FIRST Robotics Team 1511 Rolling Thunder's Programming Subteam">
+      
+      
+      
+        <link rel="canonical" href="https://frc1511.github.io/1511-software/thunderlib/thunderauto/">
+      
+      
+        <link rel="prev" href="../install/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>ThunderLib - ThunderAuto Integration - FRC 1511 Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#thunderauto-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="FRC 1511 Programming" class="md-header__button md-logo" aria-label="FRC 1511 Programming" data-md-component="logo">
+      
+  <img src="../../../apple-touch-icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FRC 1511 Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ThunderLib - ThunderAuto Integration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/frc1511/frc1511.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    frc1511.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="FRC 1511 Programming" class="md-nav__button md-logo" aria-label="FRC 1511 Programming" data-md-component="logo">
+      
+  <img src="../../../apple-touch-icon.png" alt="logo">
+
+    </a>
+    FRC 1511 Programming
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/frc1511/frc1511.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    frc1511.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://frc1511.github.io/Teaching-Resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teaching Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../programming-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programming Tools
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Programming Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../programming-tools/wpilib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WPILib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../programming-tools/ni-game-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NI Game Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../programming-tools/git-github/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git+GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../programming-tools/svn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subversion (SVN)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://frc1511.github.io/Teaching-Resources/other/syntax-ref.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../cpp-reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C++ Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp-reference/variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp-reference/operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp-reference/functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp-reference/statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp-reference/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp-reference/enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1511 Software
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1511 Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robot-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Robot Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../thunderauto/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ThunderAuto
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ThunderAuto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thunderauto/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thunderauto/creating-a-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating a Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thunderauto/trajectories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trajectories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thunderauto/auto-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autonomous Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thunderauto/actions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thunderauto/running-trajectories-on-the-robot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running Trajectories on the Robot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thunderauto/remote-updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending Remote Updates to the Robot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ThunderLib
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ThunderLib
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ThunderAuto Integration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ThunderAuto Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-robot-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Robot Projects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-thunderauto-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading ThunderAuto Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Loading ThunderAuto Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registering-action-commands-to-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering Action Commands to the Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-auto-mode-conditions-to-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering Auto Mode Conditions to the Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#select-trajectories-andor-auto-modes-from-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Trajectories and/or Auto Modes from Dashboard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Select Trajectories and/or Auto Modes from Dashboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-trajectories-and-auto-modes-to-the-chooser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Trajectories and Auto Modes to the Chooser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-custom-commands-to-the-chooser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Custom Commands to the Chooser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-selected-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Selected Command
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://frc1511.github.io/ThunderLib/api/java/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://frc1511.github.io/ThunderLib/api/cpp/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-robot-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Robot Projects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-thunderauto-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading ThunderAuto Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Loading ThunderAuto Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registering-action-commands-to-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering Action Commands to the Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-auto-mode-conditions-to-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering Auto Mode Conditions to the Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#select-trajectories-andor-auto-modes-from-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select Trajectories and/or Auto Modes from Dashboard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Select Trajectories and/or Auto Modes from Dashboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-trajectories-and-auto-modes-to-the-chooser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Trajectories and Auto Modes to the Chooser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-custom-commands-to-the-chooser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Custom Commands to the Chooser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-selected-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Selected Command
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="thunderauto-integration">ThunderAuto Integration</h1>
+<h2 id="example-robot-projects">Example Robot Projects</h2>
+<p>See the following example robot projects that demonstrate how to use ThunderLib to load and run ThunderAuto projects on the robot:</p>
+<ul>
+<li><a href="https://github.com/frc1511/ThunderLib/tree/main/examples/ThunderAuto/java">ThunderAuto Example - Java</a></li>
+<li><a href="https://github.com/frc1511/ThunderLib/tree/main/examples/ThunderAuto/cpp">ThunderAuto Example - C++</a></li>
+</ul>
+<p>These example projects were built to be functional in simulation, see the README files in each project for instructions on how to run them. </p>
+<details class="note">
+<summary>Simulation Video</summary>
+<p><figure markdown="span">
+    <img alt="" loading="lazy" src="../../../assets/thunderlib/thunderauto_example_project_simulation.mp4" />
+    <figcaption>ThunderAuto-ThunderLib Example Project (2023) - Simulation</figcaption>
+</figure></p>
+</details>
+<h2 id="loading-thunderauto-projects">Loading ThunderAuto Projects</h2>
+<p>The <code>ThunderAutoProject</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoProject.html">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoProject.html">C++</a>) class can be used to load ThunderAuto project files.
+The <code>ThunderAutoProject</code> class provides access to the trajectories and autonomous modes defined in the ThunderAuto project.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Java</label><label for="__tabbed_1_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ThunderAutoProject</span><span class="w"> </span><span class="n">autoProject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThunderAutoProject</span><span class="p">(</span><span class="s">&quot;ProjectName&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">autoProject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">thunder</span><span class="o">::</span><span class="n">ThunderAutoProject</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;ProjectName&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>You can either provide an absolute path to the project file, or a path relative to the robot code's deploy directory. The file extension <code>.thunderauto</code> is optional and will be added automatically if not provided.</p>
+<p>To check if the project was loaded successfully, use the <code>isLoaded</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoProject.html#isLoaded()">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoProject.html#a21aa1a1bf633150c6d1cfb820d6314de">C++</a>) method. ThunderLib will log any errors encountered during loading to stderr.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Java</label><label for="__tabbed_2_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">autoProject</span><span class="p">.</span><span class="na">isLoaded</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Failed to load ThunderAuto project: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">autoProject</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="c1">// Handle error...</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">autoProject</span><span class="o">-&gt;</span><span class="n">isLoaded</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to load ThunderAuto project: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">autoProject</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1">// Handle error...</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="registering-action-commands-to-the-project">Registering Action Commands to the Project</h3>
+<p>Before running trajectories or autonomous modes from a ThunderAuto project, you must first register any <a href="../../thunderauto/actions/">Command Actions</a> that are referenced in the trajectories or autonomous modes.
+These commands will be executed when they are encountered during the execution of a trajectory/auto mode. If an action command does not get registered, ThunderLib will just skip it during execution.</p>
+<p>To register action commands, use the <code>registerActionCommand</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoProject.html#registerActionCommand(java.lang.String,edu.wpi.first.wpilibj2.command.Command)">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoProject.html#a03a91f2cab3d87ac24a01fec7e9c8b51">C++</a>) method of the <code>ThunderAutoProject</code> class. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Java</label><label for="__tabbed_3_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Print command</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">autoProject</span><span class="p">.</span><span class="na">registerActionCommand</span><span class="p">(</span><span class="s">&quot;SayHello&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Commands</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">));</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">// Custom command</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">autoProject</span><span class="p">.</span><span class="na">registerActionCommand</span><span class="p">(</span><span class="s">&quot;MyCustomCommand&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyCustomCommand</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Print command</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">autoProject</span><span class="o">-&gt;</span><span class="n">registerActionCommand</span><span class="p">(</span><span class="s">&quot;SayHello&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">frc2</span><span class="o">::</span><span class="n">cmd</span><span class="o">::</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">));</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">// Custom command</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">autoProject</span><span class="o">-&gt;</span><span class="n">registerActionCommand</span><span class="p">(</span><span class="s">&quot;MyCustomCommand&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">MyCustomCommand</span><span class="o">&gt;</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="registering-auto-mode-conditions-to-the-project">Registering Auto Mode Conditions to the Project</h3>
+<p>If an autonomous mode in the ThunderAuto project includes a boolean or switch condition step, you must register the corresponding condition functions to the project using the <code>registerBooleanCondition</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoProject.html#registerBooleanCondition(java.lang.String,java.util.function.BooleanSupplier)">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoProject.html#a892c3eddcbe3eaf0abe02eb7b478d740">C++</a>) and <code>registerSwitchCondition</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoProject.html#registerSwitchCondition(java.lang.String,java.util.function.IntSupplier)">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoProject.html#a841c390c81b06112f4b9217ee3830be6">C++</a>) methods.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Java</label><label for="__tabbed_4_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Boolean condition</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">autoProject</span><span class="p">.</span><span class="na">registerBooleanCondition</span><span class="p">(</span><span class="s">&quot;HasGamePiece&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">gamePieceSubsystem</span><span class="p">.</span><span class="na">hasGamePiece</span><span class="p">());</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">// Switch condition</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">autoProject</span><span class="p">.</span><span class="na">registerSwitchCondition</span><span class="p">(</span><span class="s">&quot;NumberOfGamePieces&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">gamePieceSubsystem</span><span class="p">.</span><span class="na">getNumberOfGamePieces</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Boolean condition</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">autoProject</span><span class="o">-&gt;</span><span class="n">registerBooleanCondition</span><span class="p">(</span><span class="s">&quot;HasGamePiece&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">gamePieceSubsystem</span><span class="o">-&gt;</span><span class="n">hasGamePiece</span><span class="p">();</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">});</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1">// Switch condition</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">autoProject</span><span class="o">-&gt;</span><span class="n">registerSwitchCondition</span><span class="p">(</span><span class="s">&quot;NumberOfGamePieces&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">gamePieceSubsystem</span><span class="o">-&gt;</span><span class="n">getNumberOfGamePieces</span><span class="p">();</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">});</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="select-trajectories-andor-auto-modes-from-dashboard">Select Trajectories and/or Auto Modes from Dashboard</h2>
+<p>ThunderLib provides a <code>ThunderAutoSendableChooser</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoSendableChooser.html">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoSendableChooser.html">C++</a>) class, which is a wrapper around WPILib's <code>SendableChooser</code> class. <code>ThunderAutoSendableChooser</code> handles ThunderAuto trajectory and autonomous mode selections from one or more projects, and provides the appropriate command to run when requested.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>ThunderAutoSendableChooser</code> will always include a default "Do Nothing" option that returns a <strong>None</strong> command. It is not possible to set a different default option, or to set a different command to the "Do Nothing" choice.</p>
+</div>
+<p>To create a <code>ThunderAutoSendableChooser</code>, simply provide the key to publish it as on the SmartDashboard. Whenever changes are made to the chooser (e.g. via methods or <a href="../../thunderauto/remote-updates/">Remote Project Updates</a>), the SmartDashboard topic will automatically get updated.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Java</label><label for="__tabbed_5_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Publish to SmartDashboard as &quot;Auto_Mode&quot;.</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1">// The published chooser will automatically get updated whenever changes are made.</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">ThunderAutoSendableChooser</span><span class="w"> </span><span class="n">autoChooser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThunderAutoSendableChooser</span><span class="p">(</span><span class="s">&quot;Auto_Mode&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Publish to SmartDashboard as &quot;Auto_Mode&quot;.</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1">// The published chooser will automatically get updated whenever changes are made.</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">auto</span><span class="w"> </span><span class="n">autoChooser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">thunder</span><span class="o">::</span><span class="n">ThunderAutoSendableChooser</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Auto_Mode&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="add-trajectories-and-auto-modes-to-the-chooser">Add Trajectories and Auto Modes to the Chooser</h3>
+<p>To add items from a ThunderAuto Project to the chooser, you must first include the project using the <code>includeProjectSource</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoSendableChooser.html#includeProjectSource(com.thunder.lib.auto.ThunderAutoProject)">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoSendableChooser.html#a568e804f541d80829d02db18c5b80d0c">C++</a>) method. Once the project is included, you can add trajectories and autonomous modes from the project to the chooser.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Java</label><label for="__tabbed_6_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// Include the project.</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">autoChooser</span><span class="p">.</span><span class="na">includeProjectSource</span><span class="p">(</span><span class="n">autoProject</span><span class="p">);</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1">// Add a trajectory from the project to the chooser.</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">autoChooser</span><span class="p">.</span><span class="na">addTrajectoryFromProject</span><span class="p">(</span><span class="n">autoProject</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;MyTrajectory&quot;</span><span class="p">);</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1">// Add all auto modes from the project to the chooser.</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="n">autoChooser</span><span class="p">.</span><span class="na">addAllAutoModesFromProject</span><span class="p">(</span><span class="n">autoProject</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// Include the project.</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">autoChooser</span><span class="o">-&gt;</span><span class="n">includeProjectSource</span><span class="p">(</span><span class="n">autoProject</span><span class="p">);</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1">// Add a trajectory from the project to the chooser.</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">autoChooser</span><span class="o">-&gt;</span><span class="n">addTrajectoryFromProject</span><span class="p">(</span><span class="n">autoProject</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;MyTrajectory&quot;</span><span class="p">);</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1">// Add all auto modes from the project to the chooser.</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">autoChooser</span><span class="o">-&gt;</span><span class="n">addAllAutoModesFromProject</span><span class="p">(</span><span class="n">autoProject</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>In order for the chooser to construct the appropriate commands for the selected trajectories and auto modes, the robot's <code>TrajectoryRunnerProperties</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/trajectory/ThunderTrajectoryRunnerProperties.html">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/structthunder_1_1TrajectoryRunnerProperties.html">C++</a>) must be provided to the chooser using using the <code>setTrajectoryRunnerProperties</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoSendableChooser.html#setTrajectoryRunnerProperties(com.thunder.lib.trajectory.ThunderTrajectoryRunnerProperties)">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoSendableChooser.html#a07f8a5a731817600e769410958d77ba1">C++</a>) method.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Java</label><label for="__tabbed_7_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">autoChooser</span><span class="p">.</span><span class="na">setTrajectoryRunnerProperties</span><span class="p">(</span><span class="n">driveSubsystem</span><span class="p">.</span><span class="na">getTrajectoryRunnerProperties</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">autoChooser</span><span class="o">-&gt;</span><span class="n">setTrajectoryRunnerProperties</span><span class="p">(</span><span class="n">driveSubsystem</span><span class="o">-&gt;</span><span class="n">getTrajectoryRunnerProperties</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>How to construct <code>TrajectoryRunnerProperties</code></summary>
+<p>We recommend creating a method in your drive subsystem that returns a <code>TrajectoryRunnerProperties</code> object configured for your robot.</p>
+<p>See the examples below, or the example robot projects (<a href="https://github.com/frc1511/ThunderLib/blob/main/examples/ThunderAuto/java/src/main/java/frc/robot/subsystems/DriveSubsystem.java">Java</a>/C++ <a href="https://github.com/frc1511/ThunderLib/blob/main/examples/ThunderAuto/cpp/src/main/include/subsystems/DriveSubsystem.h">Header</a>/<a href="https://github.com/frc1511/ThunderLib/blob/main/examples/ThunderAuto/cpp/src/main/cpp/subsystems/DriveSubsystem.cpp">Source</a>).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Java</label><label for="__tabbed_8_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DriveSubsystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SubsystemBase</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">PIDController</span><span class="w"> </span><span class="n">xController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PIDController</span><span class="p">(</span><span class="n">kDriveP</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveI</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveD</span><span class="p">);</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">PIDController</span><span class="w"> </span><span class="n">yController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PIDController</span><span class="p">(</span><span class="n">kDriveP</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveI</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveD</span><span class="p">);</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ProfiledPIDController</span><span class="w"> </span><span class="n">thetaController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ProfiledPIDController</span><span class="p">(</span><span class="n">kDriveThetaP</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveThetaI</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveThetaD</span><span class="p">,</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">        </span><span class="c1">// This profile is not important because ThunderAuto handles angular</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">        </span><span class="c1">// acceleration limits. You should make sure these limits are &gt;= those in</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">        </span><span class="c1">// ThunderAuto so they don&#39;t interfere.</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">TrapezoidProfile</span><span class="p">.</span><span class="na">Constraints</span><span class="p">(</span><span class="n">kDriveMaxAngularVelocity</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveMaxAngularAcceleration</span><span class="p">));</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">HolonomicDriveController</span><span class="w"> </span><span class="n">holonomicDriveController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HolonomicDriveController</span><span class="p">(</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">        </span><span class="n">xController</span><span class="p">,</span><span class="w"> </span><span class="n">yController</span><span class="p">,</span><span class="w"> </span><span class="n">thetaController</span><span class="p">);</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ThunderTrajectoryRunnerProperties</span><span class="w"> </span><span class="n">trajectoryRunnerProperties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThunderTrajectoryRunnerProperties</span><span class="p">(</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">        </span><span class="k">this</span><span class="p">::</span><span class="n">getCurrentPose</span><span class="p">,</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">        </span><span class="k">this</span><span class="p">::</span><span class="n">setCurrentPose</span><span class="p">,</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">        </span><span class="k">this</span><span class="p">::</span><span class="n">setChassisSpeeds</span><span class="p">,</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="w">        </span><span class="n">holonomicDriveController</span><span class="p">);</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="w">    </span><span class="c1">// Define other members (swerve modules, gyro, kinematics, odometry, etc.)</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ThunderTrajectoryRunnerProperties</span><span class="w"> </span><span class="nf">getTrajectoryRunnerProperties</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">trajectoryRunnerProperties</span><span class="p">;</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Pose2d</span><span class="w"> </span><span class="nf">getCurrentPose</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="w">        </span><span class="c1">// Get current odometry pose</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setCurrentPose</span><span class="p">(</span><span class="n">Pose2d</span><span class="w"> </span><span class="n">pose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="w">        </span><span class="c1">// Reset odometry pose</span>
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="w">        </span><span class="c1">// Important - reset controllers to prevent sudden jumps. ThunderLib does not do this for you.</span>
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="w">        </span><span class="n">xController</span><span class="p">.</span><span class="na">reset</span><span class="p">();</span>
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="w">        </span><span class="n">yController</span><span class="p">.</span><span class="na">reset</span><span class="p">();</span>
+</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="w">        </span><span class="n">thetaController</span><span class="p">.</span><span class="na">reset</span><span class="p">(</span><span class="n">pose</span><span class="p">.</span><span class="na">getRotation</span><span class="p">().</span><span class="na">getRadians</span><span class="p">());</span>
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a>
+</span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setChassisSpeeds</span><span class="p">(</span><span class="n">ChassisSpeeds</span><span class="w"> </span><span class="n">speeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a><span class="w">        </span><span class="c1">// Set module states</span>
+</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a>
+</span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42" href="#__codelineno-14-42"></a><span class="w">    </span><span class="c1">// Define other drive subsystem methods</span>
+</span><span id="__span-14-43"><a id="__codelineno-14-43" name="__codelineno-14-43" href="#__codelineno-14-43"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DriveSubsystem</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">frc2</span><span class="o">::</span><span class="n">SubsystemBase</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">private</span><span class="o">:</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">frc</span><span class="o">::</span><span class="n">HolonomicDriveController</span><span class="o">&gt;</span><span class="w"> </span><span class="n">holonomicDriveController</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">frc</span><span class="o">::</span><span class="n">HolonomicDriveController</span><span class="o">&gt;</span><span class="p">(</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">            </span><span class="n">frc</span><span class="o">::</span><span class="n">PIDController</span><span class="p">{</span><span class="n">kDriveP</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveI</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveD</span><span class="p">},</span><span class="w"> </span><span class="c1">// X</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">            </span><span class="n">frc</span><span class="o">::</span><span class="n">PIDController</span><span class="p">{</span><span class="n">kDriveP</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveI</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveD</span><span class="p">},</span><span class="w"> </span><span class="c1">// Y</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">            </span><span class="n">frc</span><span class="o">::</span><span class="n">ProfiledPIDController</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">radians</span><span class="o">&gt;</span><span class="p">{</span><span class="w">    </span><span class="c1">// Theta</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">                </span><span class="n">kDriveThetaP</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveThetaI</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveThetaD</span><span class="p">,</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">                </span><span class="c1">// This profile is not important because ThunderAuto handles angular acceleration limits. You</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">                </span><span class="c1">// should make sure these limits are &gt;= those in ThunderAuto so they don&#39;t interfere.</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">                </span><span class="p">{</span><span class="n">kDriveMaxAngularVelocity</span><span class="p">,</span><span class="w"> </span><span class="n">kDriveMaxAngularAcceleration</span><span class="p">}</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">            </span><span class="p">});</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">thunder</span><span class="o">::</span><span class="n">TrajectoryRunnerProperties</span><span class="w"> </span><span class="n">trajectoryRunnerProperties</span><span class="p">{</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DriveSubsystem</span><span class="o">::</span><span class="n">GetCurrentPose</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">),</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DriveSubsystem</span><span class="o">::</span><span class="n">SetCurrentPose</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">placeholders</span><span class="o">::</span><span class="n">_1</span><span class="p">),</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DriveSubsystem</span><span class="o">::</span><span class="n">SetChassisSpeeds</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">placeholders</span><span class="o">::</span><span class="n">_1</span><span class="p">),</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">        </span><span class="n">holonomicDriveController</span><span class="p">};</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">    </span><span class="c1">// Define other members (swerve modules, gyro, kinematics, odometry, etc.)</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">thunder</span><span class="o">::</span><span class="n">TrajectoryRunnerProperties</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getTrajectoryRunnerProperties</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">trajectoryRunnerProperties</span><span class="p">;</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="w">    </span><span class="n">frc</span><span class="o">::</span><span class="n">Pose2d</span><span class="w"> </span><span class="n">GetCurrentPose</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="w">        </span><span class="c1">// Get current odometry pose</span>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">SetCurrentPose</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">frc</span><span class="o">::</span><span class="n">Pose2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a><span class="w">        </span><span class="c1">// Reset odometry pose</span>
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a><span class="w">        </span><span class="c1">// Important - reset controllers to prevent sudden jumps. ThunderLib does not do this for you.</span>
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a><span class="w">        </span><span class="n">holonomicDriveController</span><span class="o">-&gt;</span><span class="n">GetXController</span><span class="p">().</span><span class="n">Reset</span><span class="p">();</span>
+</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a><span class="w">        </span><span class="n">holonomicDriveController</span><span class="o">-&gt;</span><span class="n">GetYController</span><span class="p">().</span><span class="n">Reset</span><span class="p">();</span>
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a><span class="w">        </span><span class="n">holonomicDriveController</span><span class="o">-&gt;</span><span class="n">GetThetaController</span><span class="p">().</span><span class="n">Reset</span><span class="p">(</span><span class="n">pose</span><span class="p">.</span><span class="n">Rotation</span><span class="p">().</span><span class="n">Radians</span><span class="p">());</span>
+</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a>
+</span><span id="__span-15-40"><a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">SetChassisSpeeds</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">frc</span><span class="o">::</span><span class="n">ChassisSpeeds</span><span class="o">&amp;</span><span class="w"> </span><span class="n">speeds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-41"><a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a><span class="w">        </span><span class="c1">// Set module states</span>
+</span><span id="__span-15-42"><a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-43"><a id="__codelineno-15-43" name="__codelineno-15-43" href="#__codelineno-15-43"></a>
+</span><span id="__span-15-44"><a id="__codelineno-15-44" name="__codelineno-15-44" href="#__codelineno-15-44"></a><span class="w">    </span><span class="c1">// Define other drive subsystem methods</span>
+</span><span id="__span-15-45"><a id="__codelineno-15-45" name="__codelineno-15-45" href="#__codelineno-15-45"></a><span class="p">};</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<h3 id="add-custom-commands-to-the-chooser">Add Custom Commands to the Chooser</h3>
+<p>You can add custom commands to the chooser using the <code>addCustomCommand</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoSendableChooser.html#addCustomCommand(java.lang.String,edu.wpi.first.wpilibj2.command.Command)">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoSendableChooser.html#a62a0cad2acdb9f85a10e1f4f823b5950">C++</a>) method.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Java</label><label for="__tabbed_9_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">autoChooser</span><span class="p">.</span><span class="na">addCustomCommand</span><span class="p">(</span><span class="s">&quot;Custom Command&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyCustomCommand</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">autoChooser</span><span class="o">-&gt;</span><span class="n">addCustomCommand</span><span class="p">(</span><span class="s">&quot;Custom Command&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">MyCustomCommand</span><span class="o">&gt;</span><span class="p">());</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="get-selected-command">Get Selected Command</h2>
+<p>To get the command for the currently selected chooser item, use the <code>getSelectedCommand</code> (<a href="https://frc1511.github.io/ThunderLib/api/java/com/thunder/lib/auto/ThunderAutoSendableChooser.html#getSelectedCommand()">Java</a>/<a href="https://frc1511.github.io/ThunderLib/api/cpp/classthunder_1_1ThunderAutoSendableChooser.html#accbe8a7827c10c8874b93e7b027d3e1d">C++</a>) method. If no item is selected, this method will return a <strong>None</strong> command.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Java</label><label for="__tabbed_10_2">C++</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Command</span><span class="w"> </span><span class="n">selectedCommand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">autoChooser</span><span class="p">.</span><span class="na">getSelectedCommand</span><span class="p">();</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">frc2</span><span class="o">::</span><span class="n">CommandPtr</span><span class="w"> </span><span class="n">selectedCommand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">autoChooser</span><span class="o">-&gt;</span><span class="n">getSelectedCommand</span><span class="p">();</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>Get this command during the robot's <code>autonomousInit</code> method and schedule it to run.</p>
+<!-- Add abbreviations here. Make sure to include plurals -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../install/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Install">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Install
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/frc1511" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.footer", "content.tooltips", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

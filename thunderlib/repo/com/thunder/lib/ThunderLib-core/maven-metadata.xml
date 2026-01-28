@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.thunder.lib</groupId>
+  <artifactId>ThunderLib-core</artifactId>
+  <versioning>
+    <latest>2026.0.0</latest>
+    <release>2026.0.0</release>
+    <versions>
+      <version>2026.0.0</version>
+    </versions>
+    <lastUpdated>20260127202352</lastUpdated>
+  </versioning>
+</metadata>
