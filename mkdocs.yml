@@ -1,0 +1,129 @@
+# Project information
+site_name: FRC 1511 Programming
+site_url: https://frc1511.github.io
+site_description: >-
+  Documentation site for FIRST Robotics Team 1511 Rolling Thunder's Programming Subteam
+
+# Repository
+repo_name: frc1511.github.io
+repo_url: https://github.com/frc1511/frc1511.github.io
+
+extra:
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/frc1511
+
+# Configuration
+theme:
+  name: material
+  features:
+    - navigation.indexes
+    - navigation.footer
+    - content.tooltips
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: JetBrains Mono
+  # logo: assets/1511-logo.jpg
+  logo: apple-touch-icon.png
+
+markdown_extensions:
+  - attr_list
+  - md_in_html 
+  - abbr
+  - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - redirects:
+      redirect_maps:
+        'thunderauto.md': '1511-software/thunderauto/index.md'
+        '1511_software/thunderauto.md': '1511-software/thunderauto/index.md'
+        'thunderlib.md': '1511-software/thunderlib/index.md'
+        '1511_software/thunderlib.md': '1511-software/thunderlib/index.md'
+  - search
+
+watch:
+  - includes/
+
+extra_css:
+  - stylesheets/extra.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+nav:
+  - Home: index.md
+  - Teaching Resources: https://frc1511.github.io/Teaching-Resources/
+  - Programming Tools:
+    - programming-tools/index.md
+    - WPILib: programming-tools/wpilib.md
+    - NI Game Tools: programming-tools/ni-game-tools.md
+    - Git+GitHub: programming-tools/git-github.md
+    - Subversion (SVN): programming-tools/svn.md
+  - Java Reference: https://frc1511.github.io/Teaching-Resources/other/syntax-ref.html
+  - C++ Reference:
+    - cpp-reference/index.md
+    - Variables: cpp-reference/variables.md
+    - Operators: cpp-reference/operators.md
+    - Functions: cpp-reference/functions.md
+    - Statements: cpp-reference/statements.md
+    - Classes: cpp-reference/classes.md
+    - Enums: cpp-reference/enums.md
+  - 1511 Software:
+    - 1511-software/index.md
+    - Robot Code: 1511-software/robot-code.md
+    - ThunderAuto:
+      - 1511-software/thunderauto/index.md
+      - Install: 1511-software/thunderauto/install.md
+      - Creating a Project: 1511-software/thunderauto/creating-a-project.md
+      - Trajectories: 1511-software/thunderauto/trajectories.md
+      - Autonomous Modes: 1511-software/thunderauto/auto-modes.md
+      - Actions: 1511-software/thunderauto/actions.md
+      - Running Trajectories on the Robot: 1511-software/thunderauto/running-trajectories-on-the-robot.md
+      - Sending Remote Updates to the Robot: 1511-software/thunderauto/remote-updates.md
+    - ThunderLib:
+      - 1511-software/thunderlib/index.md
+      - Install: 1511-software/thunderlib/install.md
+      - ThunderAuto Integration: 1511-software/thunderlib/thunderauto.md
+      - Java API: https://frc1511.github.io/ThunderLib/api/java/index.html
+      - C++ API: https://frc1511.github.io/ThunderLib/api/cpp/index.html
