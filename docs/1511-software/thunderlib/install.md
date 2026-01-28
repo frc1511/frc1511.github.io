@@ -14,7 +14,7 @@ title: ThunderLib - Install
     </figure>
 3. In the box, paste the ThunderLib vendor URL and press Enter:
 ```
-https://frc1511.github.io/ThunderLib/ThunderLib2026.json
+https://frc1511.github.io/thunderlib/ThunderLib2026.json
 ```
 <figure markdown="span">
 ![](../../assets/thunderlib/vscode_wpilib_thunderlib_install.png){width="600"}
