@@ -1,0 +1,9 @@
+:root  > * {
+  --md-primary-fg-color: #ed1c24; /* 1511 Red */
+  --md-primary-fg-color--light: #ff141c; /* Lighter */
+  --md-primary-fg-color--dark:  #c22020; /* Darker */
+
+  --md-accent-fg-color: #c22020; /* Darker */
+  /* TODO: light & dark? */
+}
+
